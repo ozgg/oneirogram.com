@@ -1,0 +1,19 @@
+plugins:
+  - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
+AllCops:
+  NewCops: enable
+
+Metrics/MethodLength:
+  CountAsOne: ['heredoc']
+
+RSpecRails/InferredSpecType:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

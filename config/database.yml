@@ -1,0 +1,42 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch('DATABASE_HOST') { 'localhost' } %>
+  username: <%= ENV.fetch('DATABASE_USER') { 'postgres' } %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD') { 'password'} %>
+  template: template0
+  collation: ru_RU.UTF-8
+  ctype: ru_RU.UTF-8
+
+development:
+  <<: *default
+  database: oneirogram
+  #username: oneirogram_com
+  #password:
+  #host: localhost
+  #port: 5432
+  #schema_search_path: myapp,sharedapp,public
+  #min_messages: notice
+
+test:
+  <<: *default
+  database: oneirogram_test
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: oneirogram
+    username: oneirogram
+  cache:
+    <<: *primary_production
+    database: oneirogram_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: oneirogram_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: oneirogram_cable
+    migrations_paths: db/cable_migrate
