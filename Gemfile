@@ -34,7 +34,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.26'
   gem 'rubocop-rails', '~> 2.33'
   gem 'rubocop-rake', '~> 0.7.1'
-  gem 'rubocop-rspec', '~> 3.7'
+  gem 'rubocop-rspec', '~> 3.8'
   gem 'rubocop-rspec_rails', '~> 2.31'
   gem 'shoulda-matchers', '~> 7.0'
 end
