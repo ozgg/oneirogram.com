@@ -30,7 +30,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.5'
   gem 'rspec-rails', '~> 8.0'
   gem 'rubocop', '~> 1.81'
-  gem 'rubocop-factory_bot', '~> 2.27'
+  gem 'rubocop-factory_bot', '~> 2.28'
   gem 'rubocop-performance', '~> 1.26'
   gem 'rubocop-rails', '~> 2.33'
   gem 'rubocop-rake', '~> 0.7.1'
