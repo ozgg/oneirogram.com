@@ -1,0 +1,16 @@
+services:
+  postgres:
+    build:
+      context: docker/postgres
+    container_name: postgres-ru
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql
+
+volumes:
+  postgres-data:
