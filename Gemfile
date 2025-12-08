@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
-gem 'dotenv-rails', '~> 3.1'
+gem 'dotenv-rails', '~> 3.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'kamal', require: false
