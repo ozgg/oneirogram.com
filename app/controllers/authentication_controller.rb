@@ -10,15 +10,20 @@ class AuthenticationController < ApplicationController
 
   # post /login
   def authenticate
-    slug = params[:login].to_s
-    password = params[:password].to_s
-    result = Components::UsersComponent.authenticate(slug, password)
+    login = param_from_request(:login)
+    password = param_from_request(:password)
+    result = Components::UsersComponent.authenticate(login, password)
 
     render_authentication_result(result)
   end
 
   # get /login
-  def login
+  def login; end
+
+  # delete /logout
+  def logout
+    session[:user_id] = nil
+    redirect_to login_path
   end
 
   private

@@ -1,2 +1,15 @@
-<h1>Authentication#login</h1>
-<p>Find me in app/views/authentication/login.html.erb</p>
+<%= form_with(url: login_path, method: :post) do %>
+  <dl>
+    <div>
+      <dt><%= label_tag :login %></dt>
+      <dd><%= text_field_tag :login %></dd>
+    </div>
+    <div>
+      <dt><%= label_tag :password %></dt>
+      <dd><%= password_field_tag :password %></dd>
+    </div>
+  </dl>
+
+  <div><%= button_tag 'Log in', name: nil %></div>
+<% end %>
+<%= link_to 'join', new_profile_path %>

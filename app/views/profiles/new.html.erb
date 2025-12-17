@@ -1,0 +1,31 @@
+<%= form_with(model: @entity, url: new_profile_path, data: { turbo: false} ) do |f| %>
+  <% if @errors.present? %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <dl>
+    <div>
+      <dt><%= f.label :slug %></dt>
+      <dd><%= f.text_field :slug %></dd>
+    </div>
+    <div>
+      <dt><%= f.label :email %></dt>
+      <dd><%= f.email_field :email %></dd>
+    </div>
+    <div>
+      <dt><%= f.label :password %></dt>
+      <dd><%= f.password_field :password %></dd>
+    </div>
+    <div>
+      <dt><%= f.label :password_confirmation %></dt>
+      <dd><%= f.password_field :password_confirmation %></dd>
+    </div>
+  </dl>
+
+  <div><%= f.button name: nil %></div>
+<% end %>
+
+<p><%= link_to('Log in', login_path) %></p>

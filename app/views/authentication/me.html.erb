@@ -1,2 +1,5 @@
-<h1>Authentication#me</h1>
+<h1><%= @user.slug %></h1>
 <p>Find me in app/views/authentication/me.html.erb</p>
+
+<p><%= link_to('Edit', edit_profile_path) %></p>
+<%= button_to 'Log out', logout_path, method: :delete %>

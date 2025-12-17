@@ -18,5 +18,13 @@ Rails.application.routes.draw do
     get 'me'
     get 'login'
     post 'login' => :authenticate
+    delete 'logout'
+  end
+
+  controller :profiles do
+    get 'join' => :new, as: :new_profile
+    post 'join' => :create, as: nil
+    get 'me/edit' => :edit, as: :edit_profile
+    patch 'me' => :update, as: :update_profile
   end
 end

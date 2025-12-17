@@ -1,0 +1,11 @@
+<%= form_with(model: @entity, url: update_profile_path) do |f| %>
+  <dl>
+    <div>
+      <dt><%= f.label :email %></dt>
+      <dd><%= f.email_field :email %></dd>
+    </div>
+  </dl>
+
+  <div><%= f.button name: nil %></div>
+  <p><%= link_to('View', me_path) %></p>
+<% end %>
