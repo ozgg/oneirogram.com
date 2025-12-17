@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_004911) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_060051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "browsers", comment: "Browsers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false, collation: "C", comment: "User Agent"
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_browsers_on_name", unique: true
+  end
 
   create_table "languages", id: :serial, comment: "Languages", force: :cascade do |t|
     t.string "code", limit: 35, null: false, collation: "C", comment: "Locale code (IETF BCP 47 / RFC 4656)"

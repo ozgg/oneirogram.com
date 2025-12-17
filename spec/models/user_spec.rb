@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to belong_to(:inviter).optional }
   it { is_expected.to have_many(:invitees) }
 
-  describe 'validation' do
+  describe 'validations' do
     it_behaves_like 'has_required_boolean_attribute', :active
     it_behaves_like 'has_required_boolean_attribute', :bot
     it_behaves_like 'has_required_boolean_attribute', :email_confirmed
