@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_124501) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,22 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_124501) do
     t.string "name", null: false, collation: "C", comment: "User Agent"
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_browsers_on_name", unique: true
+  end
+
+  create_table "dreams", comment: "Dreams", force: :cascade do |t|
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.integer "lucidity", limit: 2, default: 0, null: false, comment: "0 (non-lucid at all) to 5 (lucid)"
+    t.integer "privacy", limit: 2, default: 0, null: false, comment: "Generally accessible/for community/personal"
+    t.bigint "sleep_place_id"
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.uuid "uuid", null: false
+    t.index "date_trunc('month'::text, created_at)", name: "dreams_created_month_idx"
+    t.index ["sleep_place_id"], name: "index_dreams_on_sleep_place_id"
+    t.index ["user_id"], name: "index_dreams_on_user_id"
+    t.index ["uuid"], name: "index_dreams_on_uuid", unique: true
   end
 
   create_table "languages", id: :serial, comment: "Languages", force: :cascade do |t|
@@ -60,6 +76,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_124501) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
 end

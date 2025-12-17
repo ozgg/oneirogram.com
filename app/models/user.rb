@@ -32,6 +32,7 @@ class User < ApplicationRecord
            dependent: :nullify,
            inverse_of: :inviter
   has_many :sleep_places, dependent: :delete_all
+  has_many :dreams, dependent: :delete_all
 
   validates :active, inclusion: { in: [true, false] }
   validates :bot, inclusion: { in: [true, false] }
