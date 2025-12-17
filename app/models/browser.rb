@@ -12,4 +12,12 @@ class Browser < ApplicationRecord
   validates :name,
             presence: true,
             uniqueness: true
+
+  # @param [String] name
+  # @return [Browser|nil]
+  def self.[](name)
+    return if name.blank?
+
+    find_or_create_by(name:)
+  end
 end
