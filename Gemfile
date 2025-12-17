@@ -7,6 +7,7 @@ gem 'bootsnap', require: false
 gem 'dotenv-rails', '~> 3.1'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'jwt', '~> 3.1'
 gem 'kamal', require: false
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.1'

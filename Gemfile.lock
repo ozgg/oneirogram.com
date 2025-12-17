@@ -138,6 +138,8 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.18.0)
+    jwt (3.1.2)
+      base64
     kamal (2.10.1)
       activesupport (>= 7.0)
       base64 (~> 0.2)
@@ -416,6 +418,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.5)
   importmap-rails
   jbuilder
+  jwt (~> 3.1)
   kamal
   kaminari (~> 1.2)
   pg (~> 1.1)
