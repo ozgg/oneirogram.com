@@ -31,6 +31,7 @@ class User < ApplicationRecord
            foreign_key: :inviter_id,
            dependent: :nullify,
            inverse_of: :inviter
+  has_many :sleep_places, dependent: :delete_all
 
   validates :active, inclusion: { in: [true, false] }
   validates :bot, inclusion: { in: [true, false] }

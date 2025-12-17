@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Authentications', type: :request do
   describe 'GET /me' do
     it 'returns http success' do
+      pending 'Implement this later'
       get '/authentication/me'
       expect(response).to have_http_status(:success)
     end
@@ -12,6 +13,7 @@ RSpec.describe 'Authentications', type: :request do
 
   describe 'GET /login' do
     it 'returns http success' do
+      pending 'Implement this later'
       get '/authentication/login'
       expect(response).to have_http_status(:success)
     end

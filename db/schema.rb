@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_060051) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_124501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_060051) do
   create_table "languages", id: :serial, comment: "Languages", force: :cascade do |t|
     t.string "code", limit: 35, null: false, collation: "C", comment: "Locale code (IETF BCP 47 / RFC 4656)"
     t.index ["code"], name: "index_languages_on_code", unique: true
+  end
+
+  create_table "sleep_places", comment: "Places where dreams are seen", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "dreams_count", default: 0, null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.uuid "uuid", null: false
+    t.index "user_id, lower((name)::text)", name: "index_sleep_places_on_user_id_lower_name", unique: true
+    t.index ["user_id"], name: "index_sleep_places_on_user_id"
+    t.index ["uuid"], name: "index_sleep_places_on_uuid", unique: true
   end
 
   create_table "users", comment: "Users", force: :cascade do |t|
@@ -48,5 +60,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_060051) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
 end
