@@ -18,6 +18,7 @@ class CreateUsers < ActiveRecord::Migration[8.1]
       t.string :referral_code, index: { unique: true }, comment: 'Referral code'
       t.datetime :deleted_at, comment: 'When user was deleted'
       t.jsonb :profile, null: false, default: {}, comment: 'Profile'
+      t.jsonb :settings, null: false, default: {}, comment: 'Settings'
       t.timestamps
     end
 

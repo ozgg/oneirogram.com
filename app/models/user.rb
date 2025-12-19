@@ -14,6 +14,7 @@
 #   password_digest [String]
 #   profile [JSON]
 #   referral_code [String]
+#   settings [JSON]
 #   slug [String]
 #   super_user [Boolean] User has super privileges
 #   updated_at [DateTime]

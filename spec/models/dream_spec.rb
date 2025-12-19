@@ -11,6 +11,7 @@ RSpec.describe Dream, type: :model do
 
   it { is_expected.to belong_to(:sleep_place).optional }
   it { is_expected.to belong_to(:user).optional }
+  it { is_expected.to belong_to(:language).optional }
   # it { is_expected.to have_many(:dream_interpretations) }
   # it { is_expected.to have_many(:dream_personal_patterns) }
   # it { is_expected.to have_many(:personal_patterns).through(:dream_personal_patterns) }

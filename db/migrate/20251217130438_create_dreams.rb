@@ -8,6 +8,7 @@ class CreateDreams < ActiveRecord::Migration[8.1]
       t.uuid :uuid, null: false, index: { unique: true }
       t.references :user, foreign_key: { on_update: :cascade, on_delete: :cascade }
       t.references :sleep_place, foreign_key: { on_update: :cascade, on_delete: :nullify }
+      t.references :language, foreign_key: { on_update: :cascade, on_delete: :nullify }
       t.integer :lucidity, limit: 2, default: 0, null: false, comment: '0 (non-lucid at all) to 5 (lucid)'
       t.integer :privacy, limit: 2, default: 0, null: false, comment: 'Generally accessible/for community/personal'
       t.string :title
