@@ -7,7 +7,16 @@ class ApplicationController < ActionController::Base
   # Changes to the importmap will invalidate the etag for HTML responses
   stale_when_importmap_changes
 
+  helper_method :current_page, :param_from_request, :current_user
+
   private
+
+  # Get current page number from request
+  #
+  # @return [Integer]
+  def current_page
+    @current_page ||= (params[:page] || 1).to_s.to_i.abs
+  end
 
   # Get parameter from request and normalize it
   #

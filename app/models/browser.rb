@@ -7,7 +7,7 @@
 #   name [String] User Agent
 #   updated_at [DateTime]
 class Browser < ApplicationRecord
-  normalizes :name, with: ->(name) { name[0..511] }
+  normalizes :name, with: -> { it[0..511] }
 
   validates :name,
             presence: true,

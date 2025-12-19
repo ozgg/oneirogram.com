@@ -1,11 +1,5 @@
 <%= form_with(model: @entity, url: new_profile_path, data: { turbo: false} ) do |f| %>
-  <% if @errors.present? %>
-    <ul>
-      <% @errors.each do |error| %>
-        <li><%= error.full_message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <%= render partial: 'shared/form/errors', locals: { errors: @errors } %>
   <dl>
     <div>
       <dt><%= f.label :slug %></dt>

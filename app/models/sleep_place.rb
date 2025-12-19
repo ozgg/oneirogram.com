@@ -18,4 +18,7 @@ class SleepPlace < ApplicationRecord
             presence: true,
             uniqueness: { scope: :user_id, case_sensitive: false },
             length: { maximum: 100 }
+
+  scope :owned_by, ->(user) { where(user:) }
+  scope :list_for_user, ->(user) { owned_by(user).order(dream_id: :desc) }
 end

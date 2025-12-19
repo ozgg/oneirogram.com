@@ -1,0 +1,8 @@
+<p><%= link_to('new dream', new_dream_path) %></p>
+<% @collection.each do |entity| %>
+  <div>
+    <p><%= entity.title %></p>
+    <p><%= entity.body %></p>
+    <p><%= link_to('view', dream_path(entity)) %></p>
+  </div>
+<% end %>

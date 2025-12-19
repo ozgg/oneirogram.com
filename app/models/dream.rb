@@ -5,6 +5,7 @@
 # Attributes:
 #   body [text]
 #   created_at [DateTime]
+#   language_id [Language]
 #   lucidity [integer]
 #   privacy [integer] (enum)
 #   sleep_place_id [SleepPlace]
@@ -26,6 +27,44 @@ class Dream < ApplicationRecord
   validates :privacy, presence: true
   validates :title, length: { maximum: 200 }
   validate :sleep_place_should_match_owner
+
+  scope :recent, -> { order(created_at: :desc) }
+  scope :list_for_user, ->(user) { where(privacy: Dream.privacy_for_user(user)).or(owned_by(user)) }
+  scope :owned_by, ->(user) { where(user:) }
+
+  # @param [User|nil] user
+  # @param [Integer] page
+  def self.page_for_user(user, page = 1)
+    list_for_user(user).page(page)
+  end
+
+  # Privacy list for user context
+  #
+  # @param [User|nil] user
+  # @return [Array]
+  def self.privacy_for_user(user)
+    if user.nil?
+      [privacies[:generally_accessible]]
+    else
+      [privacies[:generally_accessible], privacies[:for_community]]
+    end
+  end
+
+  # @param [User|nil] user
+  # @return [TrueClass,FalseClass]
+  def visible_to?(user)
+    return true if generally_accessible? || owned_by?(user)
+
+    user.present? && for_community?
+  end
+
+  # @param [User|nil] user
+  # @return [TrueClass,FalseClass]
+  def owned_by?(user)
+    return false if user.nil?
+
+    user_id == user.id
+  end
 
   private
 

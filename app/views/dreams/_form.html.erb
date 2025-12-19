@@ -1,0 +1,47 @@
+<%= form_with(model: entity, data: { turbo: false}) do |f| %>
+  <%= render partial: 'shared/form/errors', locals: { errors: entity.errors } %>
+
+  <dl>
+    <div>
+      <dt><%= f.label :title %></dt>
+      <dd><%= f.text_field :title %></dd>
+    </div>
+    <div>
+      <dt><%= f.label :body %></dt>
+      <dd><%= f.text_area :body %></dd>
+    </div>
+    <% if current_user.present? %>
+      <div>
+        <dt><%= f.label :privacy %></dt>
+        <dd>
+          <ul>
+            <% Dream.privacies.keys.each do |key| %>
+              <li>
+                <label>
+                  <%= f.radio_button :privacy, key %>
+                  <%= key %>
+                </label>
+              </li>
+            <% end %>
+          </ul>
+        </dd>
+      </div>
+      <div>
+        <dt><%= f.label :lucidity %></dt>
+        <dd><%= f.number_field :lucidity, in: (0..5) %></dd>
+      </div>
+      <% if places&.any? %>
+        <div>
+          <dt><%= f.label :sleep_place_id %></dt>
+          <dd>
+            <%= f.number_field :sleep_place_id %><br/>
+            <%= places.pluck(:id) %>
+          </dd>
+        </div>
+      <% end %>
+    <% end %>
+  </dl>
+
+  <div><%= f.button name: nil %></div>
+
+<% end %>

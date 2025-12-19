@@ -1,0 +1,8 @@
+<h1><%= @entity.title %></h1>
+<div><%= simple_format(@entity.body) %></div>
+<ul>
+  <li><%= @entity.sleep_place&.name %></li>
+  <li><%= @entity.lucidity %></li>
+</ul>
+
+<p><%= link_to('all', dreams_path) %></p>

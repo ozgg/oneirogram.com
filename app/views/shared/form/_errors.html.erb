@@ -1,0 +1,7 @@
+<% if errors.present? %>
+  <ul>
+    <% errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+<% end %>

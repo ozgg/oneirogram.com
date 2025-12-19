@@ -35,6 +35,8 @@ class User < ApplicationRecord
   has_many :sleep_places, dependent: :delete_all
   has_many :dreams, dependent: :delete_all
 
+  normalizes :email, with: -> { it.strip.presence }
+
   validates :active, inclusion: { in: [true, false] }
   validates :bot, inclusion: { in: [true, false] }
   validates :email,
