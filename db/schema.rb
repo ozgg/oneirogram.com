@@ -24,6 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
   create_table "dreams", comment: "Dreams", force: :cascade do |t|
     t.text "body", null: false
     t.datetime "created_at", null: false
+    t.bigint "language_id"
     t.integer "lucidity", limit: 2, default: 0, null: false, comment: "0 (non-lucid at all) to 5 (lucid)"
     t.integer "privacy", limit: 2, default: 0, null: false, comment: "Generally accessible/for community/personal"
     t.bigint "sleep_place_id"
@@ -32,6 +33,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
     t.bigint "user_id"
     t.uuid "uuid", null: false
     t.index "date_trunc('month'::text, created_at)", name: "dreams_created_month_idx"
+    t.index ["language_id"], name: "index_dreams_on_language_id"
     t.index ["sleep_place_id"], name: "index_dreams_on_sleep_place_id"
     t.index ["user_id"], name: "index_dreams_on_user_id"
     t.index ["uuid"], name: "index_dreams_on_uuid", unique: true
@@ -66,6 +68,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
     t.string "password_digest", null: false, comment: "Encrypted password"
     t.jsonb "profile", default: {}, null: false, comment: "Profile"
     t.string "referral_code", comment: "Referral code"
+    t.jsonb "settings", default: {}, null: false, comment: "Settings"
     t.string "slug", null: false, collation: "C", comment: "Slug (case-insensitive)"
     t.boolean "super_user", default: false, null: false, comment: "User has unlimited privileges"
     t.datetime "updated_at", null: false
@@ -76,6 +79,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "dreams", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
