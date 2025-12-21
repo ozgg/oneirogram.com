@@ -15,9 +15,9 @@ module Components
         raise 'User is not set' if user.nil?
 
         attributes = only_permitted_parameters(parameters)
-        user.update(attributes)
+        result = user.update(attributes)
         @errors = user.errors
-        user
+        result
       end
 
       def self.permitted_parameters

@@ -6,7 +6,7 @@ module Components
     class DreamHandler < BaseComponent
       # @param [Array] parameters
       def create(parameters)
-        attributes = only_permitted_parameters(parameters)
+        attributes = only_permitted_parameters(parameters).merge(user_id:)
         dream = Dream.create(attributes)
         @errors = dream.errors
         dream
@@ -16,9 +16,9 @@ module Components
       # @param [Hash] parameters
       def update(dream, parameters)
         attributes = only_permitted_parameters(parameters)
-        dream.update(attributes)
+        result = dream.update(attributes)
         @errors = dream.errors
-        dream
+        result
       end
 
       # @return [Array<Symbol>]

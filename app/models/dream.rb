@@ -28,6 +28,9 @@ class Dream < ApplicationRecord
   validates :title, length: { maximum: 200 }
   validate :sleep_place_should_match_owner
 
+  normalizes :privacy,
+             with: -> { it.privacy = :generally_accessible if it.user_id.nil? }
+
   scope :recent, -> { order(created_at: :desc) }
   scope :list_for_user, ->(user) { where(privacy: Dream.privacy_for_user(user)).or(owned_by(user)) }
   scope :owned_by, ->(user) { where(user:) }

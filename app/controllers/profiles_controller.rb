@@ -29,8 +29,7 @@ class ProfilesController < ApplicationController
   def update
     handler = Components::Users::ProfileHandler.new(user: @entity)
     permitted = handler.class.permitted_parameters
-    handler.update(params.expect(user: permitted))
-    if handler.errors.blank?
+    if handler.update(params.expect(user: permitted))
       redirect_to me_path
     else
       @errors = handler.errors

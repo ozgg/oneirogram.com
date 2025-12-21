@@ -9,5 +9,9 @@ module Components
       @errors = {}
       @user = user
     end
+
+    def user_id
+      user&.id
+    end
   end
 end
