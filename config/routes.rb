@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :dreams, except: %i[update destroy]
+  resources :dreams, except: %i[edit update destroy]
+
+  namespace :my do
+    resources :sleep_places, except: %i[show]
+    resources :dreams, except: %i[new create]
+  end
 
   controller :authentication do
     get 'me'

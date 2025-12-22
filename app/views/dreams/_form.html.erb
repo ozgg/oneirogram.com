@@ -1,5 +1,5 @@
-<%= form_with(model: entity, data: { turbo: false}) do |f| %>
-  <%= render partial: 'shared/form/errors', locals: { errors: entity.errors } %>
+<%= form_with(model:, url:, data: { turbo: false}) do |f| %>
+  <%= render partial: 'shared/form/errors', locals: { errors: model.errors } %>
 
   <dl>
     <div>
@@ -34,8 +34,22 @@
         <div>
           <dt><%= f.label :sleep_place_id %></dt>
           <dd>
-            <%= f.number_field :sleep_place_id %><br/>
-            <%= places.pluck(:id) %>
+            <ul>
+              <li>
+                <label>
+                  <%= f.radio_button :privacy, nil, checked: model.sleep_place_id.nil? %>
+                  Not set
+                </label>
+              </li>
+              <% places.each do |sleep_place| %>
+                <li>
+                  <label>
+                    <%= f.radio_button :sleep_place_id, sleep_place.id %>
+                    <%= sleep_place.name %> (<%= sleep_place.dreams_count %>)
+                  </label>
+                </li>
+              <% end %>
+            </ul>
           </dd>
         </div>
       <% end %>

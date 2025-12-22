@@ -28,8 +28,7 @@ class Dream < ApplicationRecord
   validates :title, length: { maximum: 200 }
   validate :sleep_place_should_match_owner
 
-  normalizes :privacy,
-             with: -> { it.privacy = :generally_accessible if it.user_id.nil? }
+  before_validation :check_privacy, on: :create
 
   scope :recent, -> { order(created_at: :desc) }
   scope :list_for_user, ->(user) { where(privacy: Dream.privacy_for_user(user)).or(owned_by(user)) }
@@ -76,5 +75,10 @@ class Dream < ApplicationRecord
     return if sleep_place.user_id == user_id
 
     errors.add(:sleep_place, :invalid)
+  end
+
+  # Anonymous dreams are always generally accessible
+  def check_privacy
+    self.privacy = :generally_accessible if user_id.nil?
   end
 end

@@ -4,20 +4,20 @@ module Components
   module Oneirogram
     # Handle dreams creation and update
     class DreamHandler < BaseComponent
-      # @param [Array] parameters
+      # @param [Hash] parameters
       def create(parameters)
         attributes = only_permitted_parameters(parameters).merge(user_id:)
-        dream = Dream.create(attributes)
-        @errors = dream.errors
-        dream
+        entity = Dream.create(attributes)
+        @errors = entity.errors
+        entity
       end
 
-      # @param [Dream] dream
+      # @param [Dream] entity
       # @param [Hash] parameters
-      def update(dream, parameters)
+      def update(entity, parameters)
         attributes = only_permitted_parameters(parameters)
-        result = dream.update(attributes)
-        @errors = dream.errors
+        result = entity.update(attributes)
+        @errors = entity.errors
         result
       end
 
@@ -28,6 +28,7 @@ module Components
 
       private
 
+      # @param [Hash] parameters
       def only_permitted_parameters(parameters)
         list = self.class.permitted_parameters.index_with do |parameter|
           parameters[parameter]

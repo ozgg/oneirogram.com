@@ -20,5 +20,5 @@ class SleepPlace < ApplicationRecord
             length: { maximum: 100 }
 
   scope :owned_by, ->(user) { where(user:) }
-  scope :list_for_user, ->(user) { owned_by(user).order(dream_id: :desc) }
+  scope :list_for_user, ->(user) { owned_by(user).order(dreams_count: :desc) }
 end

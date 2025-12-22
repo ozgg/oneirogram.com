@@ -1,0 +1,12 @@
+<%= form_with(model:, url:, data: { turbo: false }) do |f| %>
+  <%= render partial: 'shared/form/errors', locals: { errors: model.errors } %>
+
+  <dl>
+    <div>
+      <dt><%= f.label :name %></dt>
+      <dd><%= f.text_field :name %></dd>
+    </div>
+  </dl>
+
+  <div><%= f.button name: nil %></div>
+<% end %>

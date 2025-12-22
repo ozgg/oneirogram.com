@@ -6,9 +6,9 @@ module Components
     class ProfileHandler < Components::BaseComponent
       def register(parameters)
         attributes = only_permitted_parameters(parameters)
-        user = User.create(attributes)
-        @errors = user.errors
-        user
+        entity = User.create(attributes)
+        @errors = entity.errors
+        entity
       end
 
       def update(parameters)

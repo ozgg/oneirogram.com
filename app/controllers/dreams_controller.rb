@@ -27,7 +27,7 @@ class DreamsController < ApplicationController
     if @entity.id.present?
       redirect_to dream_path(@entity.id)
     else
-      @errors = handler.errors
+      @errors = @entity.errors
       render :new, status: :bad_request
     end
   end
