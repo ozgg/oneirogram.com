@@ -1,0 +1,13 @@
+<header class="main-header">
+  <div class="content-wrapper">
+    <div class="logo"><%= link_to('Oneirogram', root_path) %></div>
+    <nav class="nav-main">
+      <ul>
+        <li><%= link_to('dreams', dreams_path) %></li>
+      </ul>
+    </nav>
+    <div class="authentication">
+      <%= current_user&.id.inspect %>
+    </div>
+  </div>
+</header>
