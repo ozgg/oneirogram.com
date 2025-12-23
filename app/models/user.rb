@@ -34,6 +34,7 @@ class User < ApplicationRecord
            inverse_of: :inviter
   has_many :sleep_places, dependent: :delete_all
   has_many :dreams, dependent: :delete_all
+  has_many :dream_images, dependent: :delete_all
 
   normalizes :email, with: -> { it.strip.presence }
 

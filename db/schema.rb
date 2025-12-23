@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_23_014422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
     t.string "name", null: false, collation: "C", comment: "User Agent"
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_browsers_on_name", unique: true
+  end
+
+  create_table "dream_images", comment: "Personal dream image", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "dreams_count", default: 0, null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.uuid "uuid", null: false
+    t.index ["user_id", "name"], name: "index_dream_images_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_dream_images_on_user_id"
+    t.index ["uuid"], name: "index_dream_images_on_uuid", unique: true
   end
 
   create_table "dreams", comment: "Dreams", force: :cascade do |t|
@@ -79,6 +91,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_17_130438) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "dream_images", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dreams", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
