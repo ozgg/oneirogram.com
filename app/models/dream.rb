@@ -19,6 +19,8 @@ class Dream < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :sleep_place, optional: true
   belongs_to :language, optional: true
+  has_many :dream_image_dreams, dependent: :destroy
+  has_many :dream_images, through: :dream_image_dreams
 
   enum :privacy, { generally_accessible: 0, for_community: 1, personal: 2 }
 

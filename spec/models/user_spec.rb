@@ -15,6 +15,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:invitees) }
   it { is_expected.to have_many(:sleep_places) }
   it { is_expected.to have_many(:dreams) }
+  it { is_expected.to have_many(:dream_images) }
 
   describe 'validations' do
     it_behaves_like 'has_required_boolean_attribute', :active

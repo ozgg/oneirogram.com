@@ -10,6 +10,8 @@ RSpec.describe DreamImage, type: :model do
   it_behaves_like 'has_uuid'
 
   it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_many(:dream_image_dreams).dependent(:destroy) }
+  it { is_expected.to have_many(:dreams).through(:dream_image_dreams) }
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }

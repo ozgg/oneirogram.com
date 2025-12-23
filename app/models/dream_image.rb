@@ -13,6 +13,8 @@ class DreamImage < ApplicationRecord
   include HasUuid
 
   belongs_to :user
+  has_many :dream_image_dreams, dependent: :destroy
+  has_many :dreams, through: :dream_image_dreams
 
   validates :name,
             presence: true,
