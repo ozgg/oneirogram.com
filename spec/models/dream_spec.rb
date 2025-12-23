@@ -22,8 +22,35 @@ RSpec.describe Dream, type: :model do
     it { is_expected.to validate_length_of(:body).is_at_least(20).is_at_most(50_000) }
     it { is_expected.to validate_presence_of(:lucidity) }
     it { is_expected.to validate_numericality_of(:lucidity).is_in(0..5) }
-    it { is_expected.to validate_presence_of(:privacy) }
     it { is_expected.to validate_length_of(:title).is_at_most(200) }
+  end
+
+  describe 'privacy constraints' do
+    let(:dream) { build(:dream, privacy: :personal, user:) }
+
+    context 'when user is set' do
+      let(:user) { create(:user) }
+
+      it 'validates presence of privacy', :aggregate_failures do
+        dream.privacy = nil
+        expect(dream).not_to be_valid
+        expect(dream.errors).to have_key(:privacy)
+      end
+
+      it 'does not change privacy' do
+        dream.valid?
+        expect(dream).to be_personal
+      end
+    end
+
+    context 'when user is not set' do
+      let(:user) { nil }
+
+      it 'sets privacy to :generally_accessible' do
+        dream.valid?
+        expect(dream).to be_generally_accessible
+      end
+    end
   end
 
   describe 'sleep place validation' do
