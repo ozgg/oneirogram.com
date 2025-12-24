@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_23_070550) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_24_005558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,6 +61,21 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_23_070550) do
     t.index ["uuid"], name: "index_dreams_on_uuid", unique: true
   end
 
+  create_table "generic_images", comment: "Generic dream images", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", comment: "Thorough interpretation for dreambook"
+    t.integer "dreams_count", default: 0, null: false, comment: "Wordform-agnostic dream count"
+    t.bigint "language_id", null: false
+    t.string "name", null: false, comment: "Normalized name"
+    t.string "summary", comment: "Summary interpretation for dreambook"
+    t.datetime "updated_at", null: false
+    t.uuid "uuid", null: false
+    t.integer "weight", default: 0, null: false, comment: "Wordform-aware dream count"
+    t.index "language_id, lower((name)::text)", name: "index_generic_images_on_language_id_lower_name", unique: true
+    t.index ["language_id"], name: "index_generic_images_on_language_id"
+    t.index ["uuid"], name: "index_generic_images_on_uuid", unique: true
+  end
+
   create_table "languages", id: :serial, comment: "Languages", force: :cascade do |t|
     t.string "code", limit: 35, null: false, collation: "C", comment: "Locale code (IETF BCP 47 / RFC 4656)"
     t.index ["code"], name: "index_languages_on_code", unique: true
@@ -107,6 +122,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_23_070550) do
   add_foreign_key "dreams", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "generic_images", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
 end
