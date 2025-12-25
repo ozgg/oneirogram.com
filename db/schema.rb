@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_25_081001) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_083154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -125,6 +125,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_081001) do
     t.index "lower((slug)::text)", name: "index_users_on_lower_slug", unique: true
     t.index ["referral_code"], name: "index_users_on_referral_code", unique: true
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
+  end
+
+  create_table "words", comment: "Words", force: :cascade do |t|
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "weight", default: 0, null: false
+    t.index "lower((body)::text)", name: "index_words_on_lower_body", unique: true
   end
 
   add_foreign_key "dream_generic_images", "dreams", on_update: :cascade, on_delete: :cascade

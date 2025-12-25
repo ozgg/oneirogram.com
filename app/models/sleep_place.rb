@@ -13,6 +13,7 @@ class SleepPlace < ApplicationRecord
   include HasUuid
 
   belongs_to :user
+  has_many :dreams, dependent: :nullify
 
   validates :name,
             presence: true,
