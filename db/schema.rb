@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_25_091709) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_093908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -147,6 +147,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_091709) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  create_table "word_forms", comment: "Word forms", force: :cascade do |t|
+    t.boolean "defective", default: false, null: false, comment: "Word has errors/mistypes"
+    t.bigint "lexeme_id", null: false
+    t.bigint "word_id", null: false
+    t.index ["lexeme_id", "word_id"], name: "index_word_forms_on_lexeme_id_and_word_id", unique: true
+    t.index ["lexeme_id"], name: "index_word_forms_on_lexeme_id"
+    t.index ["word_id"], name: "index_word_forms_on_word_id"
+  end
+
   create_table "words", comment: "Words", force: :cascade do |t|
     t.string "body", null: false
     t.datetime "created_at", null: false
@@ -170,4 +179,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_091709) do
   add_foreign_key "lexemes", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "word_forms", "lexemes", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "word_forms", "words", on_update: :cascade, on_delete: :cascade
 end

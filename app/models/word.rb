@@ -11,6 +11,8 @@
 class Word < ApplicationRecord
   has_many :dream_words, dependent: :delete_all
   has_many :dreams, through: :dream_words
+  has_many :word_forms, dependent: :delete_all
+  has_many :lexemes, through: :word_forms
 
   normalizes :body, with: -> { it.strip.downcase[0..49] }
 
