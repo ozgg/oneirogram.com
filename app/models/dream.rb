@@ -23,6 +23,8 @@ class Dream < ApplicationRecord
   has_many :dream_images, through: :dream_image_dreams
   has_many :dream_generic_images, dependent: :destroy
   has_many :generic_images, through: :dream_generic_images
+  has_many :dream_words, dependent: :destroy
+  has_many :words, through: :dream_words
 
   enum :privacy, { generally_accessible: 0, for_community: 1, personal: 2 }
 
