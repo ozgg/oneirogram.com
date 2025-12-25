@@ -15,6 +15,8 @@ RSpec.describe Dream, type: :model do
   # it { is_expected.to have_many(:dream_interpretations) }
   it { is_expected.to have_many(:dream_image_dreams).dependent(:destroy) }
   it { is_expected.to have_many(:dream_images).through(:dream_image_dreams) }
+  it { is_expected.to have_many(:dream_generic_images).dependent(:destroy) }
+  it { is_expected.to have_many(:generic_images).through(:dream_generic_images) }
   it { is_expected.to define_enum_for(:privacy).with_values(%i[generally_accessible for_community personal]) }
 
   describe 'validations' do

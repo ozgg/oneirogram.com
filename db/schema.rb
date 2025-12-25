@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_24_005558) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_081001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_005558) do
     t.string "name", null: false, collation: "C", comment: "User Agent"
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_browsers_on_name", unique: true
+  end
+
+  create_table "dream_generic_images", comment: "Links between dreams and generic dream images", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "dream_id", null: false
+    t.bigint "generic_image_id", null: false
+    t.string "summary", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dream_id", "generic_image_id"], name: "index_dream_generic_images_on_dream_id_and_generic_image_id", unique: true
+    t.index ["dream_id"], name: "index_dream_generic_images_on_dream_id"
+    t.index ["generic_image_id"], name: "index_dream_generic_images_on_generic_image_id"
   end
 
   create_table "dream_image_dreams", comment: "Links between dreams and images", force: :cascade do |t|
@@ -116,6 +127,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_005558) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "dream_generic_images", "dreams", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dream_generic_images", "generic_images", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_image_dreams", "dream_images", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_image_dreams", "dreams", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_images", "users", on_update: :cascade, on_delete: :cascade

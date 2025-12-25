@@ -10,8 +10,8 @@ RSpec.describe GenericImage, type: :model do
   it_behaves_like 'has_uuid'
 
   it { is_expected.to belong_to(:language) }
-  # it { is_expected.to have_many(:dream_generic_images).dependent(:destroy) }
-  # it { is_expected.to have_many(:dreams).through(:dream_generic_images) }
+  it { is_expected.to have_many(:dream_generic_images).dependent(:destroy) }
+  it { is_expected.to have_many(:dreams).through(:dream_generic_images) }
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }

@@ -16,6 +16,8 @@ class GenericImage < ApplicationRecord
   include HasUuid
 
   belongs_to :language
+  has_many :dream_generic_images, dependent: :destroy
+  has_many :dreams, through: :dream_generic_images
 
   validates :name,
             presence: true,
