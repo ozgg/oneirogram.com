@@ -139,8 +139,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_084600) do
   create_table "words", comment: "Words", force: :cascade do |t|
     t.string "body", null: false
     t.datetime "created_at", null: false
+    t.integer "dreams_count", default: 0, null: false, comment: "Dream count without repetition"
     t.datetime "updated_at", null: false
-    t.integer "weight", default: 0, null: false
+    t.integer "weight", default: 0, null: false, comment: "Weight (repetitive use in dreams)"
     t.index "lower((body)::text)", name: "index_words_on_lower_body", unique: true
   end
 

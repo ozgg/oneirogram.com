@@ -5,6 +5,7 @@
 # Attributes:
 #   body [String]
 #   created_at [DateTime]
+#   dreams_count [Integer]
 #   updated_at [DateTime]
 #   weight [Integer]
 class Word < ApplicationRecord

@@ -8,7 +8,7 @@
 #   word_id [Word]
 class DreamWord < ApplicationRecord
   belongs_to :dream
-  belongs_to :word
+  belongs_to :word, counter_cache: :dreams_count
 
   validates :word_id, uniqueness: { scope: :dream_id }
 
@@ -17,6 +17,8 @@ class DreamWord < ApplicationRecord
   private
 
   def subtract_word_weight
+    # rubocop:disable Rails/SkipsModelValidations
     word.decrement_counter(:weight, weight)
+    # rubocop:enable Rails/SkipsModelValidations
   end
 end
