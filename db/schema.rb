@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_25_084600) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_091709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -101,6 +101,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_084600) do
     t.index ["code"], name: "index_languages_on_code", unique: true
   end
 
+  create_table "lexemes", comment: "Lexemes", force: :cascade do |t|
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.integer "dreams_count", default: 0, null: false, comment: "Dream count without repetitions"
+    t.bigint "language_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "weight", default: 0, null: false, comment: "Weight (repetition used in dreams)"
+    t.index ["language_id", "body"], name: "index_lexemes_on_language_id_and_body", unique: true
+    t.index ["language_id"], name: "index_lexemes_on_language_id"
+  end
+
   create_table "sleep_places", comment: "Places where dreams are seen", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "dreams_count", default: 0, null: false
@@ -156,6 +167,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_084600) do
   add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "generic_images", "languages", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "lexemes", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
   add_foreign_key "users", "users", column: "inviter_id", on_update: :cascade, on_delete: :nullify
 end
