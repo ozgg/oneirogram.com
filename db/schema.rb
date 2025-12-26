@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_25_093908) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_25_095656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -79,6 +79,16 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_093908) do
     t.index ["sleep_place_id"], name: "index_dreams_on_sleep_place_id"
     t.index ["user_id"], name: "index_dreams_on_user_id"
     t.index ["uuid"], name: "index_dreams_on_uuid", unique: true
+  end
+
+  create_table "generic_image_lexemes", comment: "Lexemes for generic dream images", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "generic_image_id", null: false
+    t.bigint "lexeme_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["generic_image_id", "lexeme_id"], name: "index_generic_image_lexemes_on_generic_image_id_and_lexeme_id", unique: true
+    t.index ["generic_image_id"], name: "index_generic_image_lexemes_on_generic_image_id"
+    t.index ["lexeme_id"], name: "index_generic_image_lexemes_on_lexeme_id"
   end
 
   create_table "generic_images", comment: "Generic dream images", force: :cascade do |t|
@@ -175,6 +185,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_093908) do
   add_foreign_key "dreams", "languages", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "sleep_places", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dreams", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "generic_image_lexemes", "generic_images", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "generic_image_lexemes", "lexemes", on_update: :cascade, on_delete: :cascade
   add_foreign_key "generic_images", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "lexemes", "languages", on_update: :cascade, on_delete: :cascade
   add_foreign_key "sleep_places", "users", on_update: :cascade, on_delete: :cascade
