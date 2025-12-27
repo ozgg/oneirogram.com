@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_25_095656) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_27_014050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,6 +52,16 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_095656) do
     t.index ["user_id", "name"], name: "index_dream_images_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_dream_images_on_user_id"
     t.index ["uuid"], name: "index_dream_images_on_uuid", unique: true
+  end
+
+  create_table "dream_lexemes", comment: "Lexemes used in dreams", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "dream_id", null: false
+    t.bigint "lexeme_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dream_id", "lexeme_id"], name: "index_dream_lexemes_on_dream_id_and_lexeme_id", unique: true
+    t.index ["dream_id"], name: "index_dream_lexemes_on_dream_id"
+    t.index ["lexeme_id"], name: "index_dream_lexemes_on_lexeme_id"
   end
 
   create_table "dream_words", comment: "Words used in dreams", force: :cascade do |t|
@@ -180,6 +190,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_25_095656) do
   add_foreign_key "dream_image_dreams", "dream_images", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_image_dreams", "dreams", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_images", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dream_lexemes", "dreams", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "dream_lexemes", "lexemes", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_words", "dreams", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_words", "words", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dreams", "languages", on_update: :cascade, on_delete: :nullify
