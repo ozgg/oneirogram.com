@@ -1,0 +1,17 @@
+ru:
+  activerecord:
+    models:
+      comment: "Комментарий"
+    attributes:
+      comment:
+        body: "Текст"
+        commentable_uuid: "Комментируемый объект"
+        deleted_at: "Комментарий удалён"
+        parent_id: "Родительский комментарий"
+        user_id: "Автор"
+  comment_count:
+    zero: "комментариев нет"
+    one: "%{count} комментарий"
+    few: "%{count} комментария"
+    many: "%{count} комментариев"
+    other: "%{count} комментариев"

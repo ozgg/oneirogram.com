@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_27_014050) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_29_070926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,6 +19,25 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_27_014050) do
     t.string "name", null: false, collation: "C", comment: "User Agent"
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_browsers_on_name", unique: true
+  end
+
+  create_table "comments", comment: "Comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "browser_id"
+    t.uuid "commentable_uuid", null: false, comment: "Commented object"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.inet "ip"
+    t.bigint "parent_id"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.uuid "uuid", null: false
+    t.boolean "visible", default: true, null: false
+    t.index ["browser_id"], name: "index_comments_on_browser_id"
+    t.index ["commentable_uuid"], name: "index_comments_on_commentable_uuid"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["uuid"], name: "index_comments_on_uuid", unique: true
   end
 
   create_table "dream_generic_images", comment: "Links between dreams and generic dream images", force: :cascade do |t|
@@ -185,6 +204,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_27_014050) do
     t.index "lower((body)::text)", name: "index_words_on_lower_body", unique: true
   end
 
+  add_foreign_key "comments", "browsers", on_update: :cascade, on_delete: :nullify
+  add_foreign_key "comments", "comments", column: "parent_id", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "comments", "users", on_update: :cascade, on_delete: :nullify
   add_foreign_key "dream_generic_images", "dreams", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_generic_images", "generic_images", on_update: :cascade, on_delete: :cascade
   add_foreign_key "dream_image_dreams", "dream_images", on_update: :cascade, on_delete: :cascade

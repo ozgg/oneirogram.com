@@ -1,2 +1,5 @@
 ru:
+  activerecord:
+    attributes:
+      visible: "Показывать"
   home: "Главная"
