@@ -6,8 +6,6 @@
         <li><%= link_to('dreams', dreams_path) %></li>
       </ul>
     </nav>
-    <div class="authentication">
-      <%= current_user&.id.inspect %>
-    </div>
+    <%= render partial: 'layouts/shared/authentication', locals: { user: current_user } %>
   </div>
 </header>

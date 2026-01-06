@@ -1,0 +1,9 @@
+<div class="authentication">
+  <% if user.nil? %>
+    <%= link_to('log in', login_path) %>,
+    <%= link_to('join', new_user_session_path) %>
+  <% else %>
+    <%= user.slug %>
+    <%= button_to('log out', logout_path, turbo: { method: 'delete' }) %>
+  <% end %>
+</div>
