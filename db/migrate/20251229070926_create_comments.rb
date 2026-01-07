@@ -8,6 +8,7 @@ class CreateComments < ActiveRecord::Migration[8.1]
       t.uuid :uuid, null: false, index: { unique: true }
       t.bigint :parent_id, index: true
       t.uuid :commentable_uuid, null: false, index: true, comment: 'Commented object'
+      t.string :commentable_type, null: false, comment: 'Commented object type'
       t.references :user, foreign_key: { on_update: :cascade, on_delete: :nullify }
       t.references :browser, foreign_key: { on_update: :cascade, on_delete: :nullify }
       t.inet :ip

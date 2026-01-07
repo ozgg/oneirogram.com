@@ -24,6 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_29_070926) do
   create_table "comments", comment: "Comments", force: :cascade do |t|
     t.text "body", null: false
     t.bigint "browser_id"
+    t.string "commentable_type", null: false, comment: "Commented object type"
     t.uuid "commentable_uuid", null: false, comment: "Commented object"
     t.datetime "created_at", null: false
     t.datetime "deleted_at"

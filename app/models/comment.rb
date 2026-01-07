@@ -30,4 +30,5 @@ class Comment < ApplicationRecord
             presence: true,
             length: { maximum: 5000 }
   validates :commentable_uuid, presence: true
+  validates :commentable_type, presence: true
 end
