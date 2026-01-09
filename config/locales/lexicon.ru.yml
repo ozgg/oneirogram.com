@@ -1,0 +1,7 @@
+ru:
+  activerecord:
+    models:
+      language: "Язык"
+      lexeme: "Лексема"
+      word: "Слово"
+      word_form: "Словоформа"

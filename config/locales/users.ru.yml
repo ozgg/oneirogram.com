@@ -2,3 +2,6 @@ ru:
   activerecord:
     models:
       user: "Пользователь"
+  attributes:
+    user: "Пользователь"
+    user_id: "Пользователь"

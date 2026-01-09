@@ -2,4 +2,10 @@ ru:
   activerecord:
     attributes:
       visible: "Показывать"
+  attributes:
+    description: "Описание"
+    name: "Название"
+    title: "Название"
+    uuid: "UUID"
+    weight: "Вес"
   home: "Главная"

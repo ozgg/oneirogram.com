@@ -5,6 +5,7 @@ ru:
     attributes:
       comment:
         body: "Текст"
+        commentable_type: "Тип комментируемого объекта"
         commentable_uuid: "Комментируемый объект"
         deleted_at: "Комментарий удалён"
         parent_id: "Родительский комментарий"

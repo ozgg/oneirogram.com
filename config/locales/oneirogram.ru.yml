@@ -1,0 +1,42 @@
+ru:
+  activerecord:
+    models:
+      dream: "Сон"
+      dream_generic_image: "Общий образ сна во сне"
+      dream_image: "Образ сна"
+      dream_image_dream: "Образ сна во сне"
+      dream_lexeme: "Лексема во сне"
+      dream_word: "Слово во сне"
+      generic_image: "Общий образ сна"
+      generic_image_lexeme: "Лексема для общего образа сна"
+      sleep_place: "Место сна"
+    attributes:
+      dream:
+        body: "Сюжет"
+        lucidity: "Осознанность"
+        privacy: "Видимость"
+        sleep_place: "Место сна"
+        sleep_place_id: "Место сна"
+      dream_generic_image:
+        summary: "Интерпретация"
+      generic_image:
+        summary: "Краткая интерпретация"
+  attributes:
+    dream: "Сон"
+    dream_id: "Сон"
+    dream_image: "Образ сна"
+    dream_image_id: "Образ сна"
+    dreams_count: "Количество снов"
+    generic_image: "Общий образ снов"
+    generic_image_id: "Общий образ снов"
+  dream_count:
+    zero: "снов нет"
+    one: "%{count} сон"
+    few: "%{count} сна"
+    many: "%{count} снов"
+    other: "%{count} снов"
+  dreams:
+    index:
+      nav_text: "Сны"
+    new:
+      nav_text: "Описать сон"

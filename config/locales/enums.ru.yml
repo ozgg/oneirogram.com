@@ -1,0 +1,7 @@
+ru:
+  enums:
+    dream:
+      privacy:
+        generally_accessible: "Для всех"
+        for_community: "Для сообщества"
+        personal: "Только для меня"
