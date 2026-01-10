@@ -4,6 +4,7 @@
     <%= link_to('join', new_profile_path) %>
   <% else %>
     <%= user.slug %>
+    <%= render partial: 'layouts/shared/user_nav' %>
     <%= button_to('log out', logout_path, turbo: { method: 'delete' }) %>
   <% end %>
 </div>

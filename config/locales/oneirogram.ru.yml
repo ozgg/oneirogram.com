@@ -40,3 +40,19 @@ ru:
       nav_text: "Сны"
     new:
       nav_text: "Описать сон"
+  my:
+    sleep_places:
+      index:
+        nav_text: "Места для сна"
+        title: "Мои места для сна"
+        heading: "Мои места для сна"
+      new:
+        title: "Создание места для сна"
+        heading: "Создание места для сна"
+      edit:
+        heading: "Редактирование места сна"
+        title: "Редактирование места сна"
+    dreams:
+      index:
+        nav_text: "Сны"
+        title: "Мои сны"

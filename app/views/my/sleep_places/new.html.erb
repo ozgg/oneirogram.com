@@ -1,3 +1,12 @@
-<%= render partial: 'form', locals: { model: @entity, url: my_sleep_places_path } %>
+<% content_for :title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <%= link_to(t('my.index.index.nav_text'), my_index_path) %>
+  <%= link_to(t('my.sleep_places.index.nav_text'), my_sleep_places_path) %>
+  <span><%= t('actions.new') %></span>
+<% end %>
 
-<p><%= link_to('list', my_sleep_places_path) %></p>
+<section>
+  <h1><%= t('.heading') %></h1>
+
+  <%= render partial: 'form', locals: { model: @entity, url: my_sleep_places_path } %>
+</section>

@@ -9,3 +9,9 @@ ru:
     uuid: "UUID"
     weight: "Вес"
   home: "Главная"
+  actions:
+    new: "Создать"
+    destroy: "Удалить"
+    save: "Сохранить"
+    edit: "Редактировать"
+  are_you_sure: "Вы уверены?"

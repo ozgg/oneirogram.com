@@ -5,3 +5,7 @@ ru:
   attributes:
     user: "Пользователь"
     user_id: "Пользователь"
+  my:
+    index:
+      index:
+        nav_text: "Моё"

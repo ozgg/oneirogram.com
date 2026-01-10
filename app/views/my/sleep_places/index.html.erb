@@ -1,10 +1,15 @@
-<ul>
-  <% @collection.each do |entity| %>
-    <li>
-      <%= link_to(entity.name, edit_my_sleep_place_path(entity)) %>
-      <%= button_to 'destroy', my_sleep_place_path(entity), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  <% end %>
-</ul>
+<% content_for :title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <%= link_to(t('my.index.index.nav_text'), my_index_path) %>
+  <span><%= t('.nav_text') %></span>
+<% end %>
 
-<p><%= link_to('new', new_my_sleep_place_path) %></p>
+<section>
+  <h1><%= t('.heading') %></h1>
+
+  <%= render partial: 'list', locals: { collection: @collection } %>
+
+  <nav>
+    <p><%= link_to(t('actions.new'), new_my_sleep_place_path) %></p>
+  </nav>
+</section>

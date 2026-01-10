@@ -1,12 +1,16 @@
 <%= form_with(model:, url:, data: { turbo: false }) do |f| %>
   <%= render partial: 'shared/form/errors', locals: { errors: model.errors } %>
 
-  <dl>
+  <div class="form-fields">
     <div>
-      <dt><%= f.label :name %></dt>
-      <dd><%= f.text_field :name %></dd>
+      <label class="floating-label">
+        <span><%= model.class.human_attribute_name(:name) %></span>
+        <%= f.text_field :name, required: true, maxlength: 100 %>
+      </label>
     </div>
-  </dl>
+  </div>
 
-  <div><%= f.button name: nil %></div>
+  <div class="form-buttons">
+    <%= f.button t('actions.save'), name: nil %>
+  </div>
 <% end %>

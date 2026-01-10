@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :dreams, except: %i[edit update destroy]
 
   namespace :my do
+    get '/' => 'index#index', as: :index
     resources :sleep_places, except: %i[show]
     resources :dreams, except: %i[new create]
   end
