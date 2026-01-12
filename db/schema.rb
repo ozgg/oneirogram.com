@@ -95,6 +95,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_29_070926) do
 
   create_table "dreams", comment: "Dreams", force: :cascade do |t|
     t.text "body", null: false
+    t.integer "comment_count", default: 0, null: false, comment: "Number of comments"
     t.datetime "created_at", null: false
     t.bigint "language_id"
     t.integer "lucidity", limit: 2, default: 0, null: false, comment: "0 (non-lucid at all) to 5 (lucid)"

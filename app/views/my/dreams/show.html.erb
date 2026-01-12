@@ -1,0 +1,14 @@
+<% content_for :title, @entity.text_for_link %>
+<% content_for :breadcrumbs do %>
+  <%= my_index_link %>
+  <%= link_to(t('my.dreams.index.nav_text'), my_dreams_path) %>
+  <span><%= @entity.text_for_link %></span>
+<% end %>
+
+<article>
+  <h1><%= @entity.text_for_link %></h1>
+
+  <div>
+    <%= @entity.body %>
+  </div>
+</article>

@@ -2,6 +2,12 @@ ru:
   activerecord:
     attributes:
       visible: "Показывать"
+  actions:
+    new: "Создать"
+    destroy: "Удалить"
+    save: "Сохранить"
+    edit: "Редактировать"
+  are_you_sure: "Вы уверены?"
   attributes:
     description: "Описание"
     name: "Название"
@@ -9,9 +15,6 @@ ru:
     uuid: "UUID"
     weight: "Вес"
   home: "Главная"
-  actions:
-    new: "Создать"
-    destroy: "Удалить"
-    save: "Сохранить"
-    edit: "Редактировать"
-  are_you_sure: "Вы уверены?"
+  not_set: "Не задано"
+  nothing_found: "Ничего не нашлось"
+  untitled: "Без названия"

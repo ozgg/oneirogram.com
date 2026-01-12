@@ -1,0 +1,13 @@
+<% content_for :title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <%= my_index_link %>
+  <%= link_to(t('my.dreams.index.nav_text'), my_dreams_path) %>
+  <%= my_entity_link(@entity) %>
+  <span><%= t('actions.edit') %></span>
+<% end %>
+
+<section>
+  <h1><%= t('.heading') %></h1>
+
+  <%= render partial: 'dreams/form', locals: { entity: @entity, places: @places } %>
+</section>

@@ -1,0 +1,13 @@
+<% if collection.any? %>
+  <%= paginate collection %>
+  <% collection.each do |entity| %>
+    <div>
+      <p><%= entity.title %></p>
+      <p><%= entity.body %></p>
+      <p><%= link_to('view', dream_path(entity)) %></p>
+    </div>
+  <% end %>
+  <%= paginate collection %>
+<% else %>
+  <%= render partial: 'shared/nothing_found' %>
+<% end %>

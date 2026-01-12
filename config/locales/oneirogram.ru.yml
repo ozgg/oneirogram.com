@@ -37,9 +37,13 @@ ru:
     other: "%{count} снов"
   dreams:
     index:
+      heading: "Дневник снов"
       nav_text: "Сны"
+      title: "Дневник снов, страница %{page}"
     new:
+      heading: "Добавление сна"
       nav_text: "Описать сон"
+      title: "Добавление сна"
   my:
     sleep_places:
       index:
@@ -55,4 +59,8 @@ ru:
     dreams:
       index:
         nav_text: "Сны"
-        title: "Мои сны"
+        title: "Мои сны, страница %{page}"
+        heading: "Мои сны"
+      edit:
+        title: "Редактирование сна"
+        heading: "Редактирование сна"

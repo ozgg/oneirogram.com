@@ -1,8 +1,13 @@
-<ul>
-  <% collection.each do |entity| %>
-    <li>
-      <%= link_to(entity.name, edit_my_sleep_place_path(entity)) %>
-      <%= button_to t('actions.destroy'), my_sleep_place_path(entity), method: :delete, data: { confirm: t(:are_you_sure) } %>
-    </li>
-  <% end %>
-</ul>
+<% if collection.any? %>
+  <ul>
+    <% collection.each do |entity| %>
+      <li>
+        <%= link_to(entity.name, edit_my_sleep_place_path(entity)) %>
+        (<%= t('dream_count', count: entity.dreams.count) %>)
+        <%= destroy_button(my_sleep_place_path(entity)) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= render partial: 'shared/nothing_found' %>
+<% end %>

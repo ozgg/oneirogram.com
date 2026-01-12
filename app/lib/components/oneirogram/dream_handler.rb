@@ -21,6 +21,11 @@ module Components
         result
       end
 
+      # @param [Dream] entity
+      def destroy(entity)
+        entity.destroy
+      end
+
       # @return [Array<Symbol>]
       def self.permitted_parameters
         %i[body lucidity privacy sleep_place_id title]

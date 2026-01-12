@@ -1,61 +1,76 @@
-<%= form_with(model:, url:, data: { turbo: false}) do |f| %>
+<%= form_with(model:, url:, data: { turbo: false }) do |f| %>
   <%= render partial: 'shared/form/errors', locals: { errors: model.errors } %>
 
-  <dl>
-    <div>
-      <dt><%= f.label :title %></dt>
-      <dd><%= f.text_field :title %></dd>
-    </div>
-    <div>
-      <dt><%= f.label :body %></dt>
-      <dd><%= f.text_area :body %></dd>
-    </div>
-    <% if current_user.present? %>
+  <div class="form-fields">
+    <fieldset>
       <div>
-        <dt><%= f.label :privacy %></dt>
-        <dd>
-          <ul>
-            <% Dream.privacies.keys.each do |key| %>
-              <li>
-                <label>
-                  <%= f.radio_button :privacy, key %>
-                  <%= key %>
-                </label>
-              </li>
-            <% end %>
-          </ul>
-        </dd>
+        <label class="floating-label">
+          <span><%= model.class.human_attribute_name(:title) %></span>
+          <%= f.text_field :title, maxlength: 200 %>
+        </label>
       </div>
+
       <div>
-        <dt><%= f.label :lucidity %></dt>
-        <dd><%= f.number_field :lucidity, in: (0..5) %></dd>
+        <label class="floating-label">
+          <span><%= model.class.human_attribute_name(:body) %></span>
+          <%= f.text_area :body, minlength: 20, maxlength: 5_000, rows: 20, required: true %>
+        </label>
       </div>
-      <% if places&.any? %>
-        <div>
-          <dt><%= f.label :sleep_place_id %></dt>
-          <dd>
-            <ul>
-              <li>
-                <label>
-                  <%= f.radio_button :privacy, nil, checked: model.sleep_place_id.nil? %>
-                  Not set
-                </label>
-              </li>
-              <% places.each do |sleep_place| %>
-                <li>
-                  <label>
-                    <%= f.radio_button :sleep_place_id, sleep_place.id %>
-                    <%= sleep_place.name %> (<%= sleep_place.dreams_count %>)
-                  </label>
-                </li>
-              <% end %>
-            </ul>
-          </dd>
-        </div>
-      <% end %>
-    <% end %>
-  </dl>
+    </fieldset>
 
-  <div><%= f.button name: nil %></div>
+    <fieldset>
+      <legend><%= model.class.human_attribute_name(:privacy) %></legend>
 
+      <ul>
+        <% Dream.privacies.keys.each do |key| %>
+          <li>
+            <label>
+              <%= f.radio_button :privacy, key, checked: model.privacy == key, required: true %>
+              <%= enum_value('dream', 'privacy', key) %>
+            </label>
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= model.class.human_attribute_name(:lucidity) %></legend>
+
+      <ul class="lucidity-select">
+        <% 6.times do |i| %>
+          <li>
+            <label>
+              <%= f.radio_button :lucidity, i, checked: model.lucidity == i, required: true %>
+              <%= i %>
+            </label>
+          </li>
+        <% end %>
+      </ul>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= model.class.human_attribute_name(:sleep_place) %></legend>
+
+      <ul>
+        <li>
+          <label>
+            <%= f.radio_button :sleep_place_id, nil, checked: model.sleep_place_id.nil? %>
+            <%= t(:not_set) %>
+          </label>
+        </li>
+        <% if places&.any? %>
+          <% places.each do |sleep_place| %>
+            <li>
+              <label>
+                <%= f.radio_button :sleep_place_id, sleep_place.id, checked: model.sleep_place_id == sleep_place.id %>
+                <%= sleep_place.name %> (<%= t(:dream_count, count: sleep_place.dreams_count) %>)
+              </label>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+
+  <div class="form-actions"><%= f.button t('actions.save'), name: nil %></div>
 <% end %>

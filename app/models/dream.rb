@@ -37,13 +37,20 @@ class Dream < ApplicationRecord
   before_validation :check_privacy, on: :create
 
   scope :recent, -> { order(created_at: :desc) }
-  scope :list_for_user, ->(user) { where(privacy: Dream.privacy_for_user(user)).or(owned_by(user)) }
+  scope :list_for_user, ->(user) { where(privacy: Dream.privacy_for_user(user)).or(owned_by(user)).recent }
+  scope :list_for_owner, ->(user) { owned_by(user).recent }
   scope :owned_by, ->(user) { where(user:) }
 
   # @param [User|nil] user
   # @param [Integer] page
   def self.page_for_user(user, page = 1)
     list_for_user(user).page(page)
+  end
+
+  # @param [User] user
+  # @param [Integer] page
+  def self.page_for_owner(user, page = 1)
+    list_for_owner(user).page(page)
   end
 
   # Privacy list for user context
@@ -72,6 +79,10 @@ class Dream < ApplicationRecord
     return false if user.nil?
 
     user_id == user.id
+  end
+
+  def text_for_link
+    title.blank? ? I18n.t(:untitled) : title
   end
 
   private

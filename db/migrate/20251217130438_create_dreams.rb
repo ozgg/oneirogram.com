@@ -14,6 +14,7 @@ class CreateDreams < ActiveRecord::Migration[8.1]
       t.string :title
       t.text :body, null: false
       t.timestamps
+      t.integer :comment_count, null: false, default: 0, comment: 'Number of comments'
     end
 
     add_index :dreams, "date_trunc('month', created_at)", name: 'dreams_created_month_idx'

@@ -1,0 +1,14 @@
+<% if collection.any? %>
+  <%= paginate collection %>
+  <% collection.each do |entity| %>
+    <article>
+      <h2><%= entity.title %></h2>
+      <div>
+        <%= entity.body %>
+      </div>
+    </article>
+  <% end %>
+  <%= paginate collection %>
+<% else %>
+  <%= render 'shared/nothing_found' %>
+<% end %>
