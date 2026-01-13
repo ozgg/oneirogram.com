@@ -18,3 +18,8 @@ ru:
   not_set: "Не задано"
   nothing_found: "Ничего не нашлось"
   untitled: "Без названия"
+  pages:
+    about:
+      heading: "О проекте"
+      nav_text: "О проекте"
+      title: "О проекте"

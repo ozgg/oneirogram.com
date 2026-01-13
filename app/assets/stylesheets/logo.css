@@ -1,0 +1,30 @@
+.logo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+}
+
+.logo-link {
+    display: inline-grid;
+    gap: 0;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    padding: 5px;
+    width: 100%;
+
+    * {
+        aspect-ratio: 1;
+        content: '\A';
+        display: inline-block;
+    }
+
+    b {
+        background: black;
+        border-radius: 50%;
+    }
+
+    i {
+    }
+}

@@ -1,0 +1,34 @@
+:root {
+    --content-width: 64rem;
+
+    --spacer-xxs: .25rem;
+    --spacer-xs: .5rem;
+    --spacer-s: 1rem;
+
+    --font-size-normal: 1rem;
+    --font-size-increased: 1.125rem;
+    --font-size-large: 1.25rem;
+}
+
+body {
+    max-width: var(--content-width);
+}
+
+.main-header {
+    align-items: center;
+    display: flex;
+    gap: var(--spacer-xs);
+    padding: var(--spacer-xxs);
+
+    .authentication {
+        margin-left: auto;
+    }
+}
+
+#main {
+    padding: var(--spacer-xs);
+}
+
+.main-footer {
+    padding: var(--spacer-xxs);
+}

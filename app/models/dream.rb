@@ -82,7 +82,7 @@ class Dream < ApplicationRecord
   end
 
   def text_for_link
-    title.blank? ? I18n.t(:untitled) : title
+    title.presence || I18n.t(:untitled)
   end
 
   private

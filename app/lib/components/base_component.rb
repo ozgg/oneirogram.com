@@ -23,7 +23,7 @@ module Components
     # @param [Symbol|String] scope
     def self.entity_link(entity, scope = '')
       prefix = %i[admin my].include?(scope.to_sym) ? scope : 'world'
-      message = "#{prefix}_url".to_sym
+      message = :"#{prefix}_url"
       if entity.respond_to?(message)
         entity.send(message)
       else

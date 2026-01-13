@@ -1,14 +1,13 @@
 <header class="main-header">
-  <div class="content-wrapper">
-    <div class="logo"><%= link_to('Oneirogram', root_path) %></div>
-    <nav class="nav-main">
-      <ul>
-        <li><%= link_to(t('dreams.index.nav_text'), dreams_path) %></li>
-        <% if current_user.present? %>
-          <li><%= link_to(t('dreams.new.nav_text'), new_dream_path) %></li>
-        <% end %>
-      </ul>
-    </nav>
-    <%= render partial: 'layouts/shared/authentication', locals: { user: current_user } %>
-  </div>
+  <div class="logo"><%= render 'layouts/shared/logo' %></div>
+  <nav class="nav-main">
+    <ul>
+      <li><%= link_to(t('pages.about.nav_text'), about_path) %></li>
+      <li><%= link_to(t('dreams.index.nav_text'), dreams_path) %></li>
+      <% if current_user.present? %>
+        <li><%= link_to(t('dreams.new.nav_text'), new_dream_path) %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <%= render partial: 'layouts/shared/authentication', locals: { user: current_user } %>
 </header>
