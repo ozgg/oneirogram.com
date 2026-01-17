@@ -53,7 +53,7 @@ class User < ApplicationRecord
             allow_nil: true
   validates :slug,
             uniqueness: { case_sensitive: false },
-            format: /\A[_a-z0-9]+\z/i,
-            length: { minimum: 1, maximum: 24 }
+            format: /\A[-_a-z0-9]+\z/i,
+            length: { minimum: 1, maximum: 26 }
   validates :super_user, inclusion: { in: [true, false] }
 end

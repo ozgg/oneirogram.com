@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_uniqueness_of(:referral_code).allow_nil }
     it { is_expected.to validate_length_of(:referral_code).is_at_least(1).is_at_most(16) }
     it { is_expected.to validate_uniqueness_of(:slug).case_insensitive }
-    it { is_expected.to validate_length_of(:slug).is_at_least(1).is_at_most(24) }
+    it { is_expected.to validate_length_of(:slug).is_at_least(1).is_at_most(26) }
     it { is_expected.to allow_value('Maxim').for(:slug) }
     it { is_expected.not_to allow_value('Who?!').for(:slug) }
   end
