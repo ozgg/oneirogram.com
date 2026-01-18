@@ -11,7 +11,8 @@ namespace :import do
       File.open(file_path, 'r') do |file|
         YAML.safe_load(file).each_value do |data|
           print "\r#{data['uuid']} "
-          data['slug'] = data['slug'].gsub(/^facebook-/, 'fb').gsub(/^mail_ru-/, 'vk').gsub(/^vkontakte-/, 'vk').tr('-', '_')[0..19]
+          data['slug'] =
+            data['slug'].gsub(/^facebook-/, 'fb').gsub(/^mail_ru-/, 'vk').gsub(/^vkontakte-/, 'vk').tr('-', '_')[0..19]
           entity = User.find_or_initialize_by uuid: data['uuid']
           entity.assign_attributes(data.slice(*attributes))
           entity.save!
@@ -132,7 +133,25 @@ namespace :import do
 
   desc 'Import generic dream images from legacy YAML'
   task patterns: :environment do
-    puts 'Not implemented yet'
+    language = Language.find_or_create_by(code: 'ru')
+
+    file_path = Rails.root.join('tmp/import/patterns.yml').to_s
+    if File.exist? file_path
+      attributes = %w[body created_at name processed summary updated_at]
+      puts 'Importing legacy generic dream images...'
+      File.open(file_path, 'r') do |file|
+        YAML.safe_load(file).each_value do |data|
+          print "\r#{data['name']} "
+          entity = GenericImage.find_or_initialize_by(name: data['name'], language:)
+          entity.assign_attributes(data.slice(*attributes))
+          entity.save!
+        end
+        puts
+      end
+      puts "Done. We have #{GenericImage.count} generic dream images now"
+    else
+      puts "Cannot find file #{file_path}"
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength
