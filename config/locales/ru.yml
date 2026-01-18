@@ -1,12 +1,12 @@
 ru:
-  activerecord:
-    attributes:
-      visible: "Показывать"
   actions:
     new: "Создать"
     destroy: "Удалить"
     save: "Сохранить"
     edit: "Редактировать"
+  activerecord:
+    attributes:
+      visible: "Показывать"
   are_you_sure: "Вы уверены?"
   attributes:
     description: "Описание"
@@ -14,12 +14,34 @@ ru:
     title: "Название"
     uuid: "UUID"
     weight: "Вес"
+  date:
+    nominative_months:
+      -
+      - "январь"
+      - "февраль"
+      - "март"
+      - "апрель"
+      - "май"
+      - "июнь"
+      - "июль"
+      - "август"
+      - "сентябрь"
+      - "октябрь"
+      - "ноябрь"
+      - "декабрь"
   home: "Главная"
   not_set: "Не задано"
   nothing_found: "Ничего не нашлось"
-  untitled: "Без названия"
   pages:
     about:
       heading: "О проекте"
       nav_text: "О проекте"
       title: "О проекте"
+  untitled: "Без названия"
+  views:
+    pagination:
+      first: "⇤"
+      last: "⇥"
+      previous: "←"
+      next: "→"
+      truncate: "…"
