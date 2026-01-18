@@ -12,6 +12,7 @@ class CreateGenericImages < ActiveRecord::Migration[8.1]
       t.text :description, comment: 'Thorough interpretation for dreambook'
       t.integer :dreams_count, null: false, default: 0, comment: 'Wordform-agnostic dream count'
       t.integer :weight, null: false, default: 0, comment: 'Wordform-aware dream count'
+      t.boolean :processed, null: false, default: false, comment: 'Generic image was reviewed'
 
       t.timestamps
     end

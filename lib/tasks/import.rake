@@ -11,7 +11,7 @@ namespace :import do
       File.open(file_path, 'r') do |file|
         YAML.safe_load(file).each_value do |data|
           print "\r#{data['uuid']} "
-          data['slug'] = data['slug'].gsub(/^facebook/, 'fb').gsub(/^mail_ru/, 'vk').gsub(/^vkontakte/, 'vk')
+          data['slug'] = data['slug'].gsub(/^facebook-/, 'fb').gsub(/^mail_ru-/, 'vk').gsub(/^vkontakte-/, 'vk').tr('-', '_')[0..19]
           entity = User.find_or_initialize_by uuid: data['uuid']
           entity.assign_attributes(data.slice(*attributes))
           entity.save!
@@ -60,6 +60,8 @@ namespace :import do
 
   desc 'Import dreams from legacy YAML'
   task dreams: :environment do
+    language = Language.find_or_create_by(code: 'ru')
+
     places_path = Rails.root.join('tmp/import/sleep_places.yml').to_s
     places_map = {}
     if File.exist? places_path
@@ -79,6 +81,7 @@ namespace :import do
           print "\r#{data['uuid']} "
           entity = Dream.find_or_initialize_by(uuid: data['uuid'])
           next if entity.id.present?
+
           entity.user_id = User.find_by(uuid: data['user_uuid'])
           if data.key?('sleep_place_id')
             criteria = {
@@ -87,6 +90,7 @@ namespace :import do
             }
             entity.sleep_place = SleepPlace.find_by(criteria)
           end
+          entity.language = language
           entity.assign_attributes(data.slice(*attributes))
           entity.save!
         end
@@ -100,7 +104,30 @@ namespace :import do
 
   desc 'Import comments from legacy YAML'
   task comments: :environment do
-    puts 'Not implemented yet'
+    file_path = Rails.root.join('tmp/import/comments.yml').to_s
+    if File.exist? file_path
+      attributes = %w[body commentable_uuid commentable_type created_at updated_at visible]
+      puts 'Importing legacy comments...'
+      File.open(file_path, 'r') do |file|
+        YAML.safe_load(file).each_value do |data|
+          print "\r#{data['id']} "
+          next unless data['commentable_type'] == 'Dream'
+
+          criteria = {
+            commentable_uuid: data['commentable_uuid'],
+            created_at: data['created_at']
+          }
+          entity = Comment.find_or_initialize_by criteria
+          entity.assign_attributes(data.slice(*attributes))
+          entity.user = User.find_by(uuid: data['user_uuid'])
+          entity.save!
+        end
+        puts
+      end
+      puts "Done. We have #{Comment.count} comments now"
+    else
+      puts "Cannot find file #{file_path}"
+    end
   end
 
   desc 'Import generic dream images from legacy YAML'

@@ -4,6 +4,7 @@
 #
 # Attributes:
 #   created_at [DateTime]
+#   description [Text]
 #   dreams_count [Integer]
 #   name [String]
 #   updated_at [DateTime]

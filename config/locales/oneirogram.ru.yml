@@ -20,6 +20,7 @@ ru:
       dream_generic_image:
         summary: "Интерпретация"
       generic_image:
+        processed: "Обработан"
         summary: "Краткая интерпретация"
   attributes:
     dream: "Сон"

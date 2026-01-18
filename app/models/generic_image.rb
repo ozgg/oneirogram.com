@@ -8,6 +8,7 @@
 #   dreams_count [Integer]
 #   language_id [Language]
 #   name [String]
+#   processed [Boolean]
 #   summary [String]
 #   updated_at [DateTime]
 #   uuid [UUID]

@@ -8,6 +8,7 @@ class CreateDreamImages < ActiveRecord::Migration[8.1]
       t.references :user, null: false, foreign_key: { on_update: :cascade, on_delete: :cascade }
       t.integer :dreams_count, null: false, default: 0
       t.string :name, null: false
+      t.text :description
       t.timestamps
     end
 
