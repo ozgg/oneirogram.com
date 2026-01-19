@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Components
   module Oneirogram
     class DreamContainer
-      NAME_PATTERN = /{(?<name>[^}]{1,30})}(?:\((?<text>[^)]{1,30})\))?/.freeze
+      NAME_PATTERN = /{(?<name>[^}]{1,30})}(?:\((?<text>[^)]{1,30})\))?/
 
       attr_accessor :user, :dream
 
@@ -33,7 +35,7 @@ module Components
       end
 
       def body
-        strings = dream.body.split("\n").map(&:squish).reject(&:blank?)
+        strings = dream.body.split("\n").map(&:squish).compact_blank
         strings.map { |s| parse(s) }.join
       end
 
