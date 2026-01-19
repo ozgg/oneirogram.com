@@ -1,12 +1,23 @@
 <% if collection.any? %>
   <%= paginate collection %>
-  <% collection.each do |entity| %>
-    <div>
-      <p><%= entity.title %></p>
-      <p><%= entity.body %></p>
-      <p><%= link_to('view', dream_path(entity)) %></p>
-    </div>
-  <% end %>
+  <section class="cards">
+    <% collection.each do |entity| %>
+      <article class="dream-card">
+        <header>
+          <h2><%= link_to(entity.title, dream_path(entity)) %></h2>
+        </header>
+        <div>
+          <p><%= entity.body %></p>
+        </div>
+        <footer>
+          <%= time_tag(entity.created_at) %>
+          <%= entity.user&.slug %>
+          <%= entity.comment_count %>
+        </footer>
+      </article>
+    <% end %>
+
+  </section>
   <%= paginate collection %>
 <% else %>
   <%= render partial: 'shared/nothing_found' %>

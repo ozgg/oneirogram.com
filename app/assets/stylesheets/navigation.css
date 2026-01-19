@@ -1,5 +1,5 @@
 .nav-main {
-    font-size: var(--font-size-large);
+    font: 300 var(--font-size-large) var(--font-family-nav);
 
     ul {
         display: flex;
@@ -21,10 +21,12 @@
 
 .breadcrumbs {
     align-items: center;
+    border-bottom: .0625rem solid var(--border-color-primary);
     gap: var(--spacer-xxs);
     display: flex;
     padding: var(--spacer-xs);
     flex-wrap: wrap;
+    font: 300 var(--font-size-decreased) var(--font-family-nav);
 
     a {
         background: url('icons/breadcrumb.svg') no-repeat center right / .375rem .75rem;
@@ -37,5 +39,9 @@
         &:hover {
             background-image: url('icons/breadcrumb-hover.svg');
         }
+    }
+
+    span {
+        font-weight: 400;
     }
 }

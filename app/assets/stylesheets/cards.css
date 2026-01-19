@@ -1,0 +1,20 @@
+.cards {
+    display: grid;
+    gap: var(--spacer-s);
+    grid-template-columns: 1fr 1fr;
+    margin: var(--spacer-m) 0;
+    padding: 0 var(--spacer-xs);
+}
+
+.cards > * {
+    border: 1px solid var(--border-color-secondary);
+    border-radius: .25rem;
+    box-shadow: .125rem .125rem .25rem var(--shadow-color-a);
+    transition: .125s;
+}
+
+@media (pointer: fine) {
+    .cards > *:hover {
+        box-shadow: .125rem .125rem .25rem var(--shadow-color-a), .125rem .125rem .5rem var(--shadow-color-a);
+    }
+}

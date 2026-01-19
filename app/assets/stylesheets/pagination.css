@@ -1,0 +1,35 @@
+.pagination {
+    margin: var(--spacer-s) 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--font-family-nav);
+    justify-content: center;
+    line-height: 1;
+
+    .current,
+    .gap,
+    a {
+        display: inline-block;
+        padding: var(--spacer-xxs) var(--spacer-xs);
+        text-align: center;
+    }
+
+    .current {
+        background: #f7f7f7;
+        color: #222;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .pagination {
+        font-size: 1.5rem;
+
+        .page {
+            display: none;
+
+            &.current {
+                display: inline-block;
+            }
+        }
+    }
+}

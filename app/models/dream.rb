@@ -36,7 +36,7 @@ class Dream < ApplicationRecord
 
   before_validation :check_privacy, on: :create
 
-  scope :recent, -> { order(created_at: :desc) }
+  scope :recent, -> { order(id: :desc) }
   scope :list_for_user, ->(user) { where(privacy: Dream.privacy_for_user(user)).or(owned_by(user)).recent }
   scope :list_for_owner, ->(user) { owned_by(user).recent }
   scope :owned_by, ->(user) { where(user:) }

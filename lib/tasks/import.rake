@@ -68,7 +68,10 @@ namespace :import do
     if File.exist? places_path
       puts 'Mapping legacy sleep places...'
       File.open(places_path, 'r') { |f| places_map = YAML.safe_load(f) }
-      puts "Legacy places mapped. We have #{places_map.count} places in mapping"
+      puts "Legacy places mapped. We have #{places_map.count} places in mapping:"
+      places_map.each do |id, name|
+        puts "#{id.inspect}: #{name.inspect}"
+      end
     else
       puts "Cannot find file #{places_path}"
     end
@@ -81,15 +84,17 @@ namespace :import do
         YAML.safe_load(file).each_value do |data|
           print "\r#{data['uuid']} "
           entity = Dream.find_or_initialize_by(uuid: data['uuid'])
-          next if entity.id.present?
+          # next if entity.id.present?
 
-          entity.user_id = User.find_by(uuid: data['user_uuid'])
+          entity.user_id = User.find_by(uuid: data['user_uuid'])&.id
           if data.key?('sleep_place_id')
             criteria = {
               user_id: entity.user_id,
-              name: places_map[data['sleep_place_id']]['name']
+              name: places_map[data['sleep_place_id']]['name'],
             }
+            print "#{entity.user_id.inspect};"
             entity.sleep_place = SleepPlace.find_by(criteria)
+            print "#{data['sleep_place_id']}/#{entity.sleep_place_id.inspect} "
           end
           entity.language = language
           entity.assign_attributes(data.slice(*attributes))
