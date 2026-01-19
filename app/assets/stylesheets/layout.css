@@ -24,6 +24,12 @@
 
     --border-color-primary: rgba(0, 0, 0, 0.25);
     --border-color-secondary: rgba(0, 0, 0, 0.125);
+
+    --border-primary: .0625rem solid var(--border-color-primary);
+    --border-secondary: .0625rem solid var(--border-color-secondary);
+
+    --text-color-primary: black;
+    --text-color-secondary: darkgray;
 }
 
 html {
@@ -52,7 +58,7 @@ body {
 }
 
 .main-footer {
-    border-top: .0625rem solid var(--border-color-primary);
+    border-top: var(--border-primary);
     padding: var(--spacer-xxs);
 }
 

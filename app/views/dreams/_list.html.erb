@@ -1,24 +1,11 @@
-<% if collection.any? %>
-  <%= paginate collection %>
+<% if collector.any? %>
+  <%= paginate collector.list %>
   <section class="cards">
-    <% collection.each do |entity| %>
-      <article class="dream-card">
-        <header>
-          <h2><%= link_to(entity.title, dream_path(entity)) %></h2>
-        </header>
-        <div>
-          <p><%= entity.body %></p>
-        </div>
-        <footer>
-          <%= time_tag(entity.created_at) %>
-          <%= entity.user&.slug %>
-          <%= entity.comment_count %>
-        </footer>
-      </article>
+    <% collector.each do |entity| %>
+      <%= render partial: 'dreams/card', locals: { entity: } %>
     <% end %>
-
   </section>
-  <%= paginate collection %>
+  <%= paginate collector.list %>
 <% else %>
   <%= render partial: 'shared/nothing_found' %>
 <% end %>

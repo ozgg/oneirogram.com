@@ -42,4 +42,11 @@ module ApplicationHelper
   def enum_value(model_name, field_name, key)
     t("enums.#{model_name}.#{field_name}.#{key}")
   end
+
+  # @param [User|nil] user
+  def profile_link(user)
+    return t(:anonymous) if user.blank?
+
+    link_to(user.slug, '#', class: 'profile-link')
+  end
 end

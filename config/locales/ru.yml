@@ -7,6 +7,7 @@ ru:
   activerecord:
     attributes:
       visible: "Показывать"
+  anonymous: "Анонимно"
   are_you_sure: "Вы уверены?"
   attributes:
     description: "Описание"

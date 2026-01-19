@@ -44,7 +44,7 @@ class Dream < ApplicationRecord
   # @param [User|nil] user
   # @param [Integer] page
   def self.page_for_user(user, page = 1)
-    list_for_user(user).page(page)
+    list_for_user(user).page(page).per(12)
   end
 
   # @param [User] user

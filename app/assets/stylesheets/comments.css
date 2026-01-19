@@ -1,0 +1,4 @@
+.comment-count {
+    background: url('icons/comment.svg') no-repeat center left / auto var(--font-size-decreased);
+    padding-left: calc(var(--font-size-decreased) + var(--spacer-xxs));
+}

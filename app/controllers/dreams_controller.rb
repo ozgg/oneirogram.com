@@ -7,7 +7,8 @@ class DreamsController < ApplicationController
 
   # get /dreams
   def index
-    @collection = Dream.page_for_user(current_user, current_page)
+    @collector = Components::Oneirogram::DreamCollector.new(current_user)
+    @collector.public_page(current_page)
   end
 
   # get /dreams/:id

@@ -1,0 +1,13 @@
+<article class="dream-card <%= entity.privacy %>">
+  <header>
+    <h2><%= link_to(entity.title, dream_path(entity.id)) %></h2>
+  </header>
+  <div>
+    <p><%= entity.preview %></p>
+  </div>
+  <footer>
+    <%= profile_link(entity.owner) %>
+    <span class="comment-count"><%= entity.comment_count %></span>
+    <%= time_tag(entity.date) %>
+  </footer>
+</article>

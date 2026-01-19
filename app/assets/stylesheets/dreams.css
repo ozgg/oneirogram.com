@@ -1,0 +1,50 @@
+.dream-card {
+    background: no-repeat top var(--spacer-xxs) right var(--spacer-xxs) / 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &.for_community {
+        background-image: url('icons/lock.svg')
+    }
+
+    &.personal {
+        background-image: url('icons/lock-red.svg')
+    }
+
+    header {
+        border-bottom: var(--border-secondary);
+    }
+
+    header a {
+        display: block;
+        padding: var(--spacer-xxs) var(--spacer-xs);
+    }
+
+    h2 {
+        font-size: var(--font-size-large);
+    }
+
+    footer {
+        border-top: var(--border-secondary);
+        color: var(--text-color-secondary);
+        display: flex;
+        font-size: var(--font-size-decreased);
+        gap: var(--spacer-xs);
+        margin-top: auto;
+        padding: var(--spacer-xxs) var(--spacer-xs);
+    }
+
+    p {
+        margin: var(--spacer-xs) 0;
+        padding: 0 var(--spacer-xs);
+    }
+
+    .comment-count {
+        margin-left: auto;
+    }
+}
+
+.name-in-dream {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
