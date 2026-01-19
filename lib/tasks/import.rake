@@ -90,7 +90,7 @@ namespace :import do
           if data.key?('sleep_place_id')
             criteria = {
               user_id: entity.user_id,
-              name: places_map[data['sleep_place_id']]['name'],
+              name: places_map[data['sleep_place_id']]['name']
             }
             print "#{entity.user_id.inspect};"
             entity.sleep_place = SleepPlace.find_by(criteria)
