@@ -2,6 +2,9 @@ ru:
   activerecord:
     models:
       user: "Пользователь"
+    attributes:
+      user:
+        password: "Пароль"
   attributes:
     user: "Пользователь"
     user_id: "Пользователь"
@@ -9,3 +12,6 @@ ru:
     index:
       index:
         nav_text: "Моё"
+  authentication:
+    login:
+      login: "Логин"
