@@ -43,6 +43,10 @@ module Components
         strings.map { |s| parse(s) }.join
       end
 
+      def restricted?
+        !dream.generally_accessible?
+      end
+
       # Parse fragments like {Real Name}(text)
       #
       # @param [String] string

@@ -8,6 +8,11 @@
 <article class="dream">
   <header>
     <h1><%= @container.title %></h1>
+    <% if @container.restricted? %>
+      <p class="privacy" title="<%= Dream.human_attribute_name(:privacy) %>">
+        <%= enum_value('dream', 'privacy', @container.privacy) %>
+      </p>
+    <% end %>
   </header>
   <section class="plot">
     <div class="body"><%= raw @container.body %></div>
