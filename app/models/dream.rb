@@ -50,7 +50,7 @@ class Dream < ApplicationRecord
   # @param [User] user
   # @param [Integer] page
   def self.page_for_owner(user, page = 1)
-    list_for_owner(user).page(page)
+    list_for_owner(user).page(page).per(12)
   end
 
   # Privacy list for user context

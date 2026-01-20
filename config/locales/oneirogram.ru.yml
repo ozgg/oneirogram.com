@@ -67,3 +67,5 @@ ru:
       edit:
         title: "Редактирование сна"
         heading: "Редактирование сна"
+      show:
+        title: "Мой сон «%{title}»"

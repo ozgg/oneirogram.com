@@ -7,7 +7,7 @@ module Components
 
       attr_accessor :user, :dream
 
-      delegate :id, :created_at, :comment_count, :privacy, to: :dream
+      delegate :id, :created_at, :comment_count, :privacy, :lucidity, to: :dream
 
       # @param [User|nil] user
       # @param [Dream] dream
@@ -26,6 +26,10 @@ module Components
 
       def date
         dream.created_at.to_date
+      end
+
+      def sleep_place
+        dream.sleep_place&.name
       end
 
       def preview

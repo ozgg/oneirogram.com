@@ -1,14 +1,11 @@
-<% if collection.any? %>
-  <%= paginate collection %>
-  <% collection.each do |entity| %>
-    <article>
-      <h2><%= entity.title %></h2>
-      <div>
-        <%= entity.body %>
-      </div>
-    </article>
-  <% end %>
-  <%= paginate collection %>
+<% if collector.any? %>
+  <%= paginate collector.list %>
+  <section class="cards">
+    <% collector.each do |entity| %>
+      <%= render partial: 'my/dreams/card', locals: { entity: } %>
+    <% end %>
+  </section>
+  <%= paginate collector.list %>
 <% else %>
-  <%= render 'shared/nothing_found' %>
+  <%= render partial: 'shared/nothing_found' %>
 <% end %>

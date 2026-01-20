@@ -20,6 +20,12 @@ module Components
         @list = Dream.page_for_user(user, page)
         @collection = @list.map { |dream| DreamContainer.new(user, dream) }
       end
+
+      # @param [Integer] page
+      def personal_page(page = 1)
+        @list = Dream.page_for_owner(user, page)
+        @collection = @list.map { |dream| DreamContainer.new(user, dream) }
+      end
     end
   end
 end

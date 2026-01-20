@@ -1,0 +1,73 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "97186d4ce18de2f4435cbd9a59549133769d6099e8e1b5f9f41ab3604151915e",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/dreams/show.html.erb",
+      "line": 12,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Components::Oneirogram::DreamContainer.new(current_user, Dream.list_for_user(current_user).find(params[:id])).body",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "DreamsController",
+          "method": "show",
+          "line": 17,
+          "file": "app/controllers/dreams_controller.rb",
+          "rendered": {
+            "name": "dreams/show",
+            "file": "app/views/dreams/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "dreams/show"
+      },
+      "user_input": "Dream.list_for_user(current_user).find(params[:id])",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "Dream body is handled and properly escaped in DreamContainer"
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "aaf882792c5db5fadc8da5ff96f8903d4361e02f20c315cc1583552a4fe45ae8",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/my/dreams/show.html.erb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Components::Oneirogram::DreamContainer.new(current_user, Dream.owned_by(current_user).find(params[:id])).body",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "My::DreamsController",
+          "method": "show",
+          "line": 19,
+          "file": "app/controllers/my/dreams_controller.rb",
+          "rendered": {
+            "name": "my/dreams/show",
+            "file": "app/views/my/dreams/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "my/dreams/show"
+      },
+      "user_input": "Dream.owned_by(current_user).find(params[:id])",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": "Dream body is handled and properly escaped in DreamContainer"
+    }
+  ],
+  "brakeman_version": "7.1.2"
+}

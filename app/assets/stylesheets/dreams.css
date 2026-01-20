@@ -72,7 +72,16 @@
         padding: 0 var(--spacer-s);
     }
 
-    .plot time {
+    .plot:not(:has(.sleep_place)) time {
         margin-left: auto;
     }
+}
+
+.lucidity::before {
+    content: '\26c5';
+    line-height: 1;
+}
+
+.sleep_place {
+    margin-right: auto;
 }

@@ -9,11 +9,14 @@ module My
 
     # get /my/dreams
     def index
-      @collection = Dream.page_for_owner(current_user, current_page)
+      @collector = Components::Oneirogram::DreamCollector.new(current_user)
+      @collector.personal_page(current_page)
     end
 
     # get /my/dreams/:id
-    def show; end
+    def show
+      @container = Components::Oneirogram::DreamContainer.new(current_user, @entity)
+    end
 
     # get /my/dreams/:id/edit
     def edit
