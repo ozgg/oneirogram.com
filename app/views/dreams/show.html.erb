@@ -1,15 +1,19 @@
-<% content_for :title, @entity.text_for_link %>
+<% content_for :title, t('.title', title: @container.title) %>
 <% content_for :breadcrumbs do %>
   <%= link_to(t('dreams.index.nav_text'), dreams_path) %>
-  <span><%= @entity.text_for_link %></span>
+  <span><%= @container.title %></span>
 <% end %>
 
-<article>
-  <h1><%= @entity.text_for_link %></h1>
+<article class="dream">
+  <header>
+    <h1><%= @entity.text_for_link %></h1>
+  </header>
+  <section class="plot">
+    <div class="body"><%= raw @container.body %></div>
 
-  <div><%= simple_format(@entity.body) %></div>
-  <ul>
-    <li><%= @entity.sleep_place&.name %></li>
-    <li><%= @entity.lucidity %></li>
-  </ul>
+    <footer>
+      <%= profile_link(@container.owner) %>
+      <%= time_tag(@container.date) %>
+    </footer>
+  </section>
 </article>

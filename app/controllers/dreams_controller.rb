@@ -12,7 +12,9 @@ class DreamsController < ApplicationController
   end
 
   # get /dreams/:id
-  def show; end
+  def show
+    @container = Components::Oneirogram::DreamContainer.new(current_user, @entity)
+  end
 
   # get /dreams/new
   def new

@@ -17,7 +17,7 @@ module Components
       end
 
       def title
-        dream.title.presence || I18n(:untitled)
+        dream.title.presence || I18n.t(:untitled)
       end
 
       def owner

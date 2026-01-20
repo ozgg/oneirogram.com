@@ -45,6 +45,8 @@ ru:
       heading: "Добавление сна"
       nav_text: "Описать сон"
       title: "Добавление сна"
+    show:
+      title: "Сон «%{title}»"
   my:
     sleep_places:
       index:

@@ -25,6 +25,7 @@
     }
 
     footer {
+        align-items: center;
         border-top: var(--border-secondary);
         color: var(--text-color-secondary);
         display: flex;
@@ -37,6 +38,7 @@
     p {
         margin: var(--spacer-xs) 0;
         padding: 0 var(--spacer-xs);
+        text-align: justify;
     }
 
     .comment-count {
@@ -47,4 +49,30 @@
 .name-in-dream {
     text-decoration: underline;
     text-decoration-style: dotted;
+    font-weight: 500;
+}
+
+.dream {
+    .plot {
+        max-width: calc(90ch + var(--spacer-m));
+
+        footer {
+            align-items: center;
+            border-top: var(--border-secondary);
+            color: var(--text-color-secondary);
+            display: flex;
+            font-size: var(--font-size-decreased);
+            gap: var(--spacer-xs);
+            padding: var(--spacer-xxs) var(--spacer-xs);
+        }
+    }
+
+    .body {
+        text-align: justify;
+        padding: 0 var(--spacer-s);
+    }
+
+    .plot time {
+        margin-left: auto;
+    }
 }
