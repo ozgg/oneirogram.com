@@ -1,0 +1,70 @@
+.floating-label {
+    display: inline-block;
+    padding: .875rem 0 0 0;
+    position: relative;
+
+    span {
+        top: .75rem;
+        font-size: .625rem;
+        left: .25rem;
+        line-height: 1;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        transition: .25s;
+    }
+}
+
+.floating-label:not(:has(:placeholder-shown)) span {
+    opacity: 1;
+    top: .125rem;
+}
+
+.form-fields {
+    input[type=text],
+    textarea {
+        width: 100%;
+    }
+}
+
+.wide .floating-label {
+    display: block;
+}
+
+form {
+    .guideline {
+        color: var(--text-color-secondary);
+        font-size: var(--font-size-decreased);
+        margin: 0;
+
+        &::before {
+            content: '\261E';
+            margin-right: var(--spacer-xxs);
+        }
+    }
+}
+
+.form-fields > div,
+.form-fields fieldset > div {
+    margin: 0 0 var(--spacer-xs);
+    padding: var(--spacer-xs);
+
+    &:not(:last-of-type) {
+        border-bottom: var(--border-secondary);
+    }
+}
+
+.input-text {
+    background-color: var(--form-input-bg);
+    border: .0625rem solid var(--input-border);
+    border-radius: var(--spacer-xxs);
+    font-size: var(--font-size-normal);
+    margin: 0;
+    padding: var(--spacer-xxs) var(--spacer-xs);
+
+    &:focus {
+        border-color: var(--input-border-focus);
+        box-shadow: .0625rem .0625rem .125rem var(--input-border-focus);
+        outline: none;
+    }
+}

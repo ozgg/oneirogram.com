@@ -47,6 +47,8 @@ ru:
       title: "Добавление сна"
     show:
       title: "Сон «%{title}»"
+    form:
+      plot: "Название и сюжет"
   my:
     sleep_places:
       index:

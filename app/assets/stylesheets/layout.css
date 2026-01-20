@@ -30,6 +30,15 @@
 
     --text-color-primary: black;
     --text-color-secondary: darkgray;
+
+    --form-control-color: hsl(220, 75%, 75%);
+    --form-field-error: #f00;
+    --form-input-bg: #fff;
+
+    --input-border: hsl(0, 0%, 75%);
+    --input-border-focus: hsl(0, 0%, 50%);
+    --input-border-invalid: hsl(0, 75%, 50%);
+    --input-border-invalid-focus: hsl(0, 50%, 50%);
 }
 
 html {

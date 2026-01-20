@@ -5,6 +5,6 @@
   <% else %>
     <%= user.slug %>
     <%= render partial: 'layouts/shared/user_nav' %>
-    <%= button_to('log out', logout_path, turbo: { method: 'delete' }) %>
+    <%= button_to('log out', logout_path, method: :delete, turbo: { method: 'delete' }) %>
   <% end %>
 </div>

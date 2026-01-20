@@ -1,19 +1,33 @@
 <%= form_with(model:, url:, data: { turbo: false }) do |f| %>
   <%= render partial: 'shared/form/errors', locals: { errors: model.errors } %>
 
-  <div class="form-fields">
+  <div class="form-fields wide">
     <fieldset>
+      <legend><%= t('.plot') %></legend>
       <div>
         <label class="floating-label">
           <span><%= model.class.human_attribute_name(:title) %></span>
-          <%= f.text_field :title, maxlength: 200 %>
+          <%=
+            f.text_field :title,
+                         maxlength: 200,
+                         placeholder: model.class.human_attribute_name(:title),
+                         class: 'input-text'
+          %>
         </label>
       </div>
 
       <div>
         <label class="floating-label">
           <span><%= model.class.human_attribute_name(:body) %></span>
-          <%= f.text_area :body, minlength: 20, maxlength: 5_000, rows: 20, required: true %>
+          <%=
+            f.text_area :body,
+                        minlength: 20,
+                        maxlength: 5_000,
+                        rows: 20,
+                        required: true,
+                        placeholder: model.class.human_attribute_name(:body),
+                        class: 'input-text'
+          %>
         </label>
       </div>
     </fieldset>
