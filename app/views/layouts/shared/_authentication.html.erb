@@ -1,7 +1,7 @@
 <div class="authentication">
   <% if user.nil? %>
-    <%= link_to(t('authentication.login.nav_text'), login_path) %>,
-    <%= link_to(t('profiles.new.nav_text'), new_profile_path) %>
+    <%= link_to(t('authentication.login.nav_text'), login_path, class: 'button button-primary') %>
+    <%= link_to(t('profiles.new.nav_text'), new_profile_path, class: 'button button-secondary') %>
   <% else %>
     <%= user.slug %>
     <%= render partial: 'layouts/shared/user_nav' %>

@@ -6,30 +6,7 @@
 <section>
   <h1><%= t('.heading') %></h1>
 
-  <%= form_with(model: @entity, url: new_profile_path, data: { turbo: false} ) do |f| %>
-    <%= render partial: 'shared/form/errors', locals: { errors: @errors } %>
-    <dl>
-      <div>
-        <dt><%= f.label :slug %></dt>
-        <dd><%= f.text_field :slug %></dd>
-      </div>
-      <div>
-        <dt><%= f.label :email %></dt>
-        <dd><%= f.email_field :email %></dd>
-      </div>
-      <div>
-        <dt><%= f.label :password %></dt>
-        <dd><%= f.password_field :password %></dd>
-      </div>
-      <div>
-        <dt><%= f.label :password_confirmation %></dt>
-        <dd><%= f.password_field :password_confirmation %></dd>
-      </div>
-    </dl>
+  <%= render partial: 'profiles/new/form', locals: { model: @entity } %>
 
-    <div><%= f.button name: nil %></div>
-  <% end %>
-
+  <p><%= t('.already_joined') %> <%= link_to(t('.log_in'), login_path) %>.</p>
 </section>
-
-<p><%= link_to('Log in', login_path) %></p>

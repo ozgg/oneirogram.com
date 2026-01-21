@@ -5,3 +5,12 @@
         display: block;
     }
 }
+
+.new-profile-form {
+    max-width: 50ch;
+
+    label {
+        display: block;
+        max-width: 30ch;
+    }
+}
