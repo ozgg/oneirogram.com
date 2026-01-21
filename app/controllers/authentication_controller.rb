@@ -34,6 +34,7 @@ class AuthenticationController < ApplicationController
       session[:user_id] = result.id
       redirect_to me_path
     else
+      flash.now[:error] = t('.invalid_credentials')
       render :login, status: :unauthorized
     end
   end

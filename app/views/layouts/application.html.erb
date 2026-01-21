@@ -28,6 +28,7 @@
 <%= render partial: 'layouts/application/header' %>
 <%= render partial: 'shared/breadcrumbs' %>
 <main id="main">
+  <%= render 'shared/flash_messages' %>
   <%= yield %>
 </main>
 <%= render partial: 'layouts/application/footer' %>

@@ -1,25 +1,35 @@
-<%= form_with(model: @entity, url: new_profile_path, data: { turbo: false} ) do |f| %>
-  <%= render partial: 'shared/form/errors', locals: { errors: @errors } %>
-  <dl>
-    <div>
-      <dt><%= f.label :slug %></dt>
-      <dd><%= f.text_field :slug %></dd>
-    </div>
-    <div>
-      <dt><%= f.label :email %></dt>
-      <dd><%= f.email_field :email %></dd>
-    </div>
-    <div>
-      <dt><%= f.label :password %></dt>
-      <dd><%= f.password_field :password %></dd>
-    </div>
-    <div>
-      <dt><%= f.label :password_confirmation %></dt>
-      <dd><%= f.password_field :password_confirmation %></dd>
-    </div>
-  </dl>
-
-  <div><%= f.button name: nil %></div>
+<% content_for :title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <span><%= t('.nav_text') %></span>
 <% end %>
+
+<section>
+  <h1><%= t('.heading') %></h1>
+
+  <%= form_with(model: @entity, url: new_profile_path, data: { turbo: false} ) do |f| %>
+    <%= render partial: 'shared/form/errors', locals: { errors: @errors } %>
+    <dl>
+      <div>
+        <dt><%= f.label :slug %></dt>
+        <dd><%= f.text_field :slug %></dd>
+      </div>
+      <div>
+        <dt><%= f.label :email %></dt>
+        <dd><%= f.email_field :email %></dd>
+      </div>
+      <div>
+        <dt><%= f.label :password %></dt>
+        <dd><%= f.password_field :password %></dd>
+      </div>
+      <div>
+        <dt><%= f.label :password_confirmation %></dt>
+        <dd><%= f.password_field :password_confirmation %></dd>
+      </div>
+    </dl>
+
+    <div><%= f.button name: nil %></div>
+  <% end %>
+
+</section>
 
 <p><%= link_to('Log in', login_path) %></p>

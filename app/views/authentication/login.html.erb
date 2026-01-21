@@ -1,32 +1,12 @@
-<%= form_with(url: login_path, method: :post) do %>
-  <div class="form-fields">
-    <div>
-      <label class="floating-label">
-        <span><%= t('.login') %></span>
-        <%=
-          text_field_tag :login,
-                         '',
-                         required: true,
-                         class: 'input-text',
-                         placeholder: t('.login')
-        %>
-      </label>
-    </div>
-
-    <div>
-      <label class="floating-label">
-        <span><%= User.human_attribute_name(:password) %></span>
-        <%=
-          password_field_tag :password,
-                             '',
-                             required: true,
-                             class: 'input-text',
-                             placeholder: User.human_attribute_name(:password)
-        %>
-      </label>
-    </div>
-  </div>
-
-  <div><%= button_tag 'Log in', name: nil %></div>
+<% content_for :title, t('.title') %>
+<% content_for :breadcrumbs do %>
+  <span><%= t('.nav_text') %></span>
 <% end %>
-<%= link_to 'join', new_profile_path %>
+
+<section>
+  <h1><%= t('.heading') %></h1>
+
+  <%= render 'authentication/form' %>
+
+  <p><%= t('.not_registered') %> <%= link_to(t('.join'), new_profile_path) %>.</p>
+</section>

@@ -1,0 +1,31 @@
+<%= form_with(url: login_path, method: :post, class: 'login-form') do %>
+  <div class="form-fields">
+    <div>
+      <label class="floating-label">
+        <span><%= t('.login') %></span>
+        <%=
+          text_field_tag :login,
+                         '',
+                         required: true,
+                         class: 'input-text',
+                         placeholder: t('.login')
+        %>
+      </label>
+    </div>
+
+    <div>
+      <label class="floating-label">
+        <span><%= User.human_attribute_name(:password) %></span>
+        <%=
+          password_field_tag :password,
+                             '',
+                             required: true,
+                             class: 'input-text',
+                             placeholder: User.human_attribute_name(:password)
+        %>
+      </label>
+    </div>
+  </div>
+
+  <div><%= button_tag t('.log_in'), name: nil, class: 'button button-primary' %></div>
+<% end %>

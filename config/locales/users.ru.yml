@@ -13,5 +13,18 @@ ru:
       index:
         nav_text: "Моё"
   authentication:
-    login:
+    form:
       login: "Логин"
+      log_in: "Войти"
+    login:
+      nav_text: "Вход"
+      title: "Вход"
+      heading: "Вход на сайт"
+      not_registered: "Ещё не зарегистрировались?"
+      join: "Присоединиться"
+    invalid_credentials: "Неправильный логин или пароль"
+  profiles:
+    new:
+      title: "Регистрация на сайте"
+      nav_text: "Регистрация"
+      heading: "Зарегистрироваться"

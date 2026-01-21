@@ -22,6 +22,8 @@
 
     --shadow-color-a: rgba(0, 0, 0, 0.125);
 
+    --block-shadow: .125rem .125rem .25rem .125rem rgba(0, 0, 0, .125);
+
     --border-color-primary: rgba(0, 0, 0, 0.25);
     --border-color-secondary: rgba(0, 0, 0, 0.125);
 
@@ -30,6 +32,11 @@
 
     --text-color-primary: black;
     --text-color-secondary: darkgray;
+    --text-color-heading: black;
+
+    --text-color-inverted-primary: #fff;
+    --text-color-inverted-secondary: #ccc;
+    --text-color-inverted-heading: #fff;
 
     --form-control-color: hsl(220, 75%, 75%);
     --form-field-error: #f00;
@@ -42,6 +49,7 @@
 }
 
 html {
+    color: var(--text-color-primary);
     font-family: var(--font-family-base);
 }
 
@@ -75,6 +83,7 @@ h1,
 h2,
 h3,
 h4 {
+    color: var(--text-color-heading);
     font-family: var(--font-family-heading);
     font-weight: 500;
 }

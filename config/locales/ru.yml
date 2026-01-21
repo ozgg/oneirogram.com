@@ -38,6 +38,14 @@ ru:
       heading: "О проекте"
       nav_text: "О проекте"
       title: "О проекте"
+  shared:
+    flash_messages:
+      alert: "Внимание"
+      error: "Ошибка"
+      info: "Информация"
+      notice: "Замечание"
+      success: "Успешно"
+      warning: "Предупреждение"
   untitled: "Без названия"
   views:
     pagination:
