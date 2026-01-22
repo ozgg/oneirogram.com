@@ -16,3 +16,6 @@ ru:
     few: "%{count} комментария"
     many: "%{count} комментариев"
     other: "%{count} комментариев"
+  comments:
+    section:
+      heading: "Комментарии"

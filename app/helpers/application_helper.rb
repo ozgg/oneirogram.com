@@ -47,6 +47,12 @@ module ApplicationHelper
   def profile_link(user)
     return t(:anonymous) if user.blank?
 
-    link_to(user.slug, '#', class: 'profile-link')
+    html_options = {
+      itemscope: true,
+      itemtype: 'http://schema.org/Person',
+      class: 'profile-link'
+    }
+
+    link_to(user.slug, '#', html_options)
   end
 end

@@ -130,6 +130,9 @@ namespace :import do
         end
         puts
       end
+      puts 'Updating comment count for dreams...'
+      Dream.find_each { |d| d.update!(comment_count: Comment.list_for_uuid(d.uuid).count) }
+      puts 'Updated comment count for dreams.'
       puts "Done. We have #{Comment.count} comments now"
     else
       puts "Cannot find file #{file_path}"

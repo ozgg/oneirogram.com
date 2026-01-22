@@ -31,4 +31,7 @@ class Comment < ApplicationRecord
             length: { maximum: 5000 }
   validates :commentable_uuid, presence: true
   validates :commentable_type, presence: true
+
+  scope :chronological, -> { order(:created_at) }
+  scope :list_for_uuid, ->(uuid) { where(commentable_uuid: uuid) }
 end

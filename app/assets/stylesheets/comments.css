@@ -1,4 +1,36 @@
 .comment-count {
     background: url('icons/comment.svg') no-repeat center left / auto var(--font-size-decreased);
-    padding-left: calc(var(--font-size-decreased) + var(--spacer-xxs));
+    padding-inline-start: calc(var(--font-size-decreased) + var(--spacer-xxs));
+}
+
+.comments-list {
+    margin-block-start: var(--spacer-m);
+    max-width: var(--text-block-width);
+}
+
+.comment {
+    border-block-end: var(--border-secondary);
+    margin-block-end: var(--spacer-s);
+
+    header {
+        align-items: center;
+        background: var(--bg-color-secondary);
+        color: var(--text-color-secondary);
+        display: flex;
+        font-size: var(--font-size-decreased);
+        padding: var(--spacer-xs);
+    }
+
+    time {
+        margin-inline-start: auto;
+    }
+
+    .body {
+        padding-block: 0 var(--spacer-xs);
+        text-align: center;
+    }
+
+    p {
+        margin-block: var(--spacer-xs);
+    }
 }

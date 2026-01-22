@@ -1,0 +1,13 @@
+<% collection.each do |entity| %>
+  <% element_id = "comment-#{entity.id}" %>
+  <article class="comment" id="<%= element_id %>" itemscope itemtype="http://schema.org/Comment">
+    <header>
+      <span itemprop="author"><%= profile_link(entity.user) %></span>
+      <%= time_tag(entity.created_at) %>
+    </header>
+    <div itemprop="about" class="body">
+      <%= simple_format(entity.body) %>
+    </div>
+    <meta itemprop="url" content="<%= url_for(anchor: element_id) %>"/>
+  </article>
+<% end %>

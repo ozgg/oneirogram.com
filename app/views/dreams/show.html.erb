@@ -21,4 +21,6 @@
       <%= time_tag(@container.date) %>
     </footer>
   </section>
+
+  <%= render partial: 'comments/section', locals: { collection: @container.comments } %>
 </article>

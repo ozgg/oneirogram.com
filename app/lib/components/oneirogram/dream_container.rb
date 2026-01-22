@@ -6,6 +6,7 @@ module Components
       NAME_PATTERN = /{(?<name>[^}]{1,30})}(?:\((?<text>[^)]{1,30})\))?/
 
       attr_accessor :user, :dream
+      attr_reader :comments
 
       delegate :id, :created_at, :comment_count, :privacy, :lucidity, to: :dream
 
@@ -14,6 +15,7 @@ module Components
       def initialize(user, dream)
         @user = user
         @dream = dream
+        @comments = []
       end
 
       def title
@@ -46,6 +48,12 @@ module Components
       def restricted?
         !dream.generally_accessible?
       end
+
+      def load_comments
+        @comments = Comment.list_for_uuid(dream.uuid).chronological
+      end
+
+      private
 
       # Parse fragments like {Real Name}(text)
       #
