@@ -15,6 +15,7 @@
 #   updated_at [DateTime]
 class Dream < ApplicationRecord
   include HasUuid
+  include HasPrivacy
 
   belongs_to :user, optional: true
   belongs_to :sleep_place, optional: true
@@ -26,11 +27,8 @@ class Dream < ApplicationRecord
   has_many :dream_words, dependent: :destroy
   has_many :words, through: :dream_words
 
-  enum :privacy, { generally_accessible: 0, for_community: 1, personal: 2 }
-
   validates :body, presence: true, length: { minimum: 20, maximum: 50_000 }
   validates :lucidity, presence: true, numericality: { in: (0..5) }
-  validates :privacy, presence: true
   validates :title, length: { maximum: 200 }
   validate :sleep_place_should_match_owner
 
@@ -51,18 +49,6 @@ class Dream < ApplicationRecord
   # @param [Integer] page
   def self.page_for_owner(user, page = 1)
     list_for_owner(user).page(page).per(12)
-  end
-
-  # Privacy list for user context
-  #
-  # @param [User|nil] user
-  # @return [Array]
-  def self.privacy_for_user(user)
-    if user.nil?
-      [privacies[:generally_accessible]]
-    else
-      [privacies[:generally_accessible], privacies[:for_community]]
-    end
   end
 
   # @param [User|nil] user

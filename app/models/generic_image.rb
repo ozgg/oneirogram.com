@@ -19,6 +19,7 @@ class GenericImage < ApplicationRecord
   belongs_to :language
   has_many :dream_generic_images, dependent: :destroy
   has_many :dreams, through: :dream_generic_images
+  has_many :dream_images, dependent: :nullify
 
   validates :name,
             presence: true,
